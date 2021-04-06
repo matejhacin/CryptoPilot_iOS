@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		56EA31B5BA034D5020F8ED5D /* Pods_Crypto_Pilot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE92219EDEFBA719B874ABA /* Pods_Crypto_Pilot.framework */; };
+		6502918B261CB5AA0024B102 /* CMCListings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6502918A261CB5AA0024B102 /* CMCListings.swift */; };
+		65029195261CD5910024B102 /* PortfolioAllocationTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65029194261CD5910024B102 /* PortfolioAllocationTools.swift */; };
+		65029198261CD6070024B102 /* CoinAllocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65029197261CD6070024B102 /* CoinAllocation.swift */; };
+		65166591260A45C100D0F938 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65166590260A45C100D0F938 /* ContentViewModel.swift */; };
+		6528AF7C257EBE1500175E39 /* Crypto_PilotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528AF7B257EBE1500175E39 /* Crypto_PilotApp.swift */; };
+		6528AF7E257EBE1500175E39 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6528AF7D257EBE1500175E39 /* ContentView.swift */; };
+		6528AF80257EBE1700175E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6528AF7F257EBE1700175E39 /* Assets.xcassets */; };
+		6528AF83257EBE1700175E39 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6528AF82257EBE1700175E39 /* Preview Assets.xcassets */; };
+		659F0CA4260A41E9007672A8 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F0CA3260A41E9007672A8 /* Api.swift */; };
+		659FF8712604FCDF003C6347 /* Color+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659FF8702604FCDF003C6347 /* Color+Colors.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6502918A261CB5AA0024B102 /* CMCListings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMCListings.swift; sourceTree = "<group>"; };
+		65029194261CD5910024B102 /* PortfolioAllocationTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioAllocationTools.swift; sourceTree = "<group>"; };
+		65029197261CD6070024B102 /* CoinAllocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAllocation.swift; sourceTree = "<group>"; };
+		65166590260A45C100D0F938 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		6528AF78257EBE1500175E39 /* Crypto Pilot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto Pilot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6528AF7B257EBE1500175E39 /* Crypto_PilotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto_PilotApp.swift; sourceTree = "<group>"; };
+		6528AF7D257EBE1500175E39 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6528AF7F257EBE1700175E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6528AF82257EBE1700175E39 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6528AF84257EBE1700175E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		659F0CA3260A41E9007672A8 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		659FF8702604FCDF003C6347 /* Color+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Colors.swift"; sourceTree = "<group>"; };
+		67ACE49D859DCBDA99FB049C /* Pods-Crypto Pilot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto Pilot.debug.xcconfig"; path = "Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot.debug.xcconfig"; sourceTree = "<group>"; };
+		AAFDB352983C81EB273C4154 /* Pods-Crypto Pilot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto Pilot.release.xcconfig"; path = "Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot.release.xcconfig"; sourceTree = "<group>"; };
+		CCE92219EDEFBA719B874ABA /* Pods_Crypto_Pilot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crypto_Pilot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6528AF75257EBE1500175E39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56EA31B5BA034D5020F8ED5D /* Pods_Crypto_Pilot.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		265DF2D9BC89C3F6B2B68131 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				67ACE49D859DCBDA99FB049C /* Pods-Crypto Pilot.debug.xcconfig */,
+				AAFDB352983C81EB273C4154 /* Pods-Crypto Pilot.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		65029189261CB5930024B102 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6502918A261CB5AA0024B102 /* CMCListings.swift */,
+				65029197261CD6070024B102 /* CoinAllocation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6502918E261CB7D20024B102 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				65029194261CD5910024B102 /* PortfolioAllocationTools.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6528AF6F257EBE1500175E39 = {
+			isa = PBXGroup;
+			children = (
+				6528AF7A257EBE1500175E39 /* Crypto Pilot */,
+				6528AF79257EBE1500175E39 /* Products */,
+				265DF2D9BC89C3F6B2B68131 /* Pods */,
+				A985168655A9C365C2F1D0FB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6528AF79257EBE1500175E39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6528AF78257EBE1500175E39 /* Crypto Pilot.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6528AF7A257EBE1500175E39 /* Crypto Pilot */ = {
+			isa = PBXGroup;
+			children = (
+				6502918E261CB7D20024B102 /* Helpers */,
+				65029189261CB5930024B102 /* Models */,
+				659F0CA2260A41BE007672A8 /* Network */,
+				659F0CA0260A4190007672A8 /* Views */,
+				659FF86F2604FCCF003C6347 /* Extensions */,
+				6528AF7B257EBE1500175E39 /* Crypto_PilotApp.swift */,
+				6528AF7F257EBE1700175E39 /* Assets.xcassets */,
+				6528AF84257EBE1700175E39 /* Info.plist */,
+				6528AF81257EBE1700175E39 /* Preview Content */,
+			);
+			path = "Crypto Pilot";
+			sourceTree = "<group>";
+		};
+		6528AF81257EBE1700175E39 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6528AF82257EBE1700175E39 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		659F0CA0260A4190007672A8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6528AF7D257EBE1500175E39 /* ContentView.swift */,
+				65166590260A45C100D0F938 /* ContentViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		659F0CA2260A41BE007672A8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				659F0CA3260A41E9007672A8 /* Api.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		659FF86F2604FCCF003C6347 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				659FF8702604FCDF003C6347 /* Color+Colors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A985168655A9C365C2F1D0FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCE92219EDEFBA719B874ABA /* Pods_Crypto_Pilot.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6528AF77257EBE1500175E39 /* Crypto Pilot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6528AF87257EBE1700175E39 /* Build configuration list for PBXNativeTarget "Crypto Pilot" */;
+			buildPhases = (
+				DE4929602F12AE3FE2D1D378 /* [CP] Check Pods Manifest.lock */,
+				6528AF74257EBE1500175E39 /* Sources */,
+				6528AF75257EBE1500175E39 /* Frameworks */,
+				6528AF76257EBE1500175E39 /* Resources */,
+				7AE1B389BEE912856065A3A3 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Crypto Pilot";
+			productName = "Crypto Pilot";
+			productReference = 6528AF78257EBE1500175E39 /* Crypto Pilot.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6528AF70257EBE1500175E39 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					6528AF77257EBE1500175E39 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 6528AF73257EBE1500175E39 /* Build configuration list for PBXProject "Crypto Pilot" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6528AF6F257EBE1500175E39;
+			productRefGroup = 6528AF79257EBE1500175E39 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6528AF77257EBE1500175E39 /* Crypto Pilot */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6528AF76257EBE1500175E39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6528AF83257EBE1700175E39 /* Preview Assets.xcassets in Resources */,
+				6528AF80257EBE1700175E39 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7AE1B389BEE912856065A3A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE4929602F12AE3FE2D1D378 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Crypto Pilot-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6528AF74257EBE1500175E39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65029195261CD5910024B102 /* PortfolioAllocationTools.swift in Sources */,
+				659FF8712604FCDF003C6347 /* Color+Colors.swift in Sources */,
+				6528AF7E257EBE1500175E39 /* ContentView.swift in Sources */,
+				659F0CA4260A41E9007672A8 /* Api.swift in Sources */,
+				6528AF7C257EBE1500175E39 /* Crypto_PilotApp.swift in Sources */,
+				6502918B261CB5AA0024B102 /* CMCListings.swift in Sources */,
+				65029198261CD6070024B102 /* CoinAllocation.swift in Sources */,
+				65166591260A45C100D0F938 /* ContentViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6528AF85257EBE1700175E39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6528AF86257EBE1700175E39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6528AF88257EBE1700175E39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67ACE49D859DCBDA99FB049C /* Pods-Crypto Pilot.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
+				DEVELOPMENT_TEAM = MR82CHM66W;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Crypto Pilot/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twoplusone.cryptopilot.Crypto-Pilot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6528AF89257EBE1700175E39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAFDB352983C81EB273C4154 /* Pods-Crypto Pilot.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
+				DEVELOPMENT_TEAM = MR82CHM66W;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Crypto Pilot/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twoplusone.cryptopilot.Crypto-Pilot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6528AF73257EBE1500175E39 /* Build configuration list for PBXProject "Crypto Pilot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6528AF85257EBE1700175E39 /* Debug */,
+				6528AF86257EBE1700175E39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6528AF87257EBE1700175E39 /* Build configuration list for PBXNativeTarget "Crypto Pilot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6528AF88257EBE1700175E39 /* Debug */,
+				6528AF89257EBE1700175E39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6528AF70257EBE1500175E39 /* Project object */;
+}
