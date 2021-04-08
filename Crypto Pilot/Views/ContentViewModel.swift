@@ -9,17 +9,17 @@ import Foundation
 
 class ContentViewModel: ObservableObject {
     
-    private var api: Api
+    private var api: CoinMarketCapClient
     
     @Published var allocations = [CoinAllocation]()
     
-    init(api: Api = Api()) {
+    init(api: CoinMarketCapClient = CoinMarketCapClient()) {
         self.api = api
     }
     
     func getListings() {
         api.getListings(count: 20) { cmcListings, error in
-            self.allocations = PortfolioAllocationTools.calculateTop20Allocations(emptyAllocations: cmcListings!.mapToCoinAllocations())
+            self.allocations = PortfolioAllocationTools.calculateTop20Allocations(coinsToAllocate: cmcListings!.mapToCoinAllocations())
         }
     }
     

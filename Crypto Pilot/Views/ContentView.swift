@@ -27,6 +27,8 @@ struct ContentView: View {
         .onAppear(perform: {
             UITableView.appearance().backgroundColor = UIColor.clear
             viewModel.getListings()
+            
+            BinanceClient().getAccountInformation()
         })
     }
 }

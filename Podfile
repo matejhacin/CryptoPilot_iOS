@@ -7,4 +7,5 @@ target 'Crypto Pilot' do
 
   # Pods for Crypto Pilot
   pod 'Alamofire', '~> 5.2'
+  pod 'SweetHMAC', '~> 3.0'
 end

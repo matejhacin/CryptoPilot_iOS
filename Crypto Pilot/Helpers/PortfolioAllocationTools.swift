@@ -9,19 +9,22 @@ import Foundation
 
 class PortfolioAllocationTools {
     
-    static func calculateTop20Allocations(emptyAllocations: [CoinAllocation]) -> [CoinAllocation] {
-        var allocations = emptyAllocations
+    static func calculateTop20Allocations(coinsToAllocate: [CoinAllocation]) -> [CoinAllocation] {
+        let maxAllocationRatio = 0.1 // 10%
+        var allocations = coinsToAllocate
         let totalCap = calculateTotalMarketCap(allocations)
         
+        // Calculate market cap ratio for each coin
         allocations.forEach { allocation in
             allocation.ratio = allocation.marketCap / totalCap
         }
         
+        // Loop through coins and allocate redundant ratio when it exceeds the max
         for i in 0...allocations.count - 1 {
             let allocation = allocations[i]
-            if allocation.ratio! > 0.1 {
-                let overflow = allocation.ratio! - 0.1
-                allocation.ratio = 0.1
+            if allocation.ratio! > maxAllocationRatio {
+                let overflow = allocation.ratio! - maxAllocationRatio
+                allocation.ratio = maxAllocationRatio
                 let remainingAllocations = Array(allocations.dropFirst(i + 1))
                 let totalNestedCap = calculateTotalMarketCap(remainingAllocations)
                 var newAllocations = [CoinAllocation]()
@@ -32,12 +35,8 @@ class PortfolioAllocationTools {
                     newAllocations.append(remainingAllocation)
                 }
                 
-                print("break")
-                
                 allocations = Array(allocations.dropLast(allocations.count - (i + 1)))
                 allocations.append(contentsOf: newAllocations)
-                
-                print("break")
             }
         }
         
