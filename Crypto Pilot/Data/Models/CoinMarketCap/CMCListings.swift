@@ -18,7 +18,7 @@ struct CMCCoinData: Codable, Identifiable {
     var numMarketPairs: Int
     var dateAdded: String
     var tags: [String]
-    var maxSupply: Int?
+    var maxSupply: Double?
     var circulatingSupply, totalSupply: Double
     var platform: CMCPlatform?
     var cmcRank: Int

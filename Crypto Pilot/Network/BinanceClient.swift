@@ -7,21 +7,61 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 class BinanceClient {
     
-    func getAccountInformation() {
-        let timestampMillis = Date().millisecondsSince1970
+    func getAveragePrice(for symbol: String) -> DataResponsePublisher<BNAveragePrice> {
+        let url = "\(Constants.Binance.BASE_URL)/api/v3/avgPrice?symbol=\(symbol.uppercased())USDT"
+        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: UserManager.shared.binanceApiKey)]
+        
+        return AF.request(url, method: .get, headers: headers).validate().publishDecodable(type: BNAveragePrice.self)
+    }
+    
+    func getAccountInformation() -> DataResponsePublisher<BNAccountInformation> {
         var url = "\(Constants.Binance.BASE_URL)/api/v3/account?"
-        var parameters = "timestamp=\(timestampMillis)&recvWindow=60000"
+        var parameters = prepareTimestampParameters()
         let parametersSignature = CryptographyTools.hmacSHA256(text: parameters, secret: UserManager.shared.binanceSecretKey)
         parameters += "&signature=\(parametersSignature)"
         url += parameters
-        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: "sEOBB9W6EbvHFGLobrHvRle1rTiqsqLAQX4YC5lijaqleegKprrR3VuaJgVuxzH9")]
-        
-        AF.request(url, method: .get, headers: headers).responseDecodable { (response: DataResponse<BNAccountInformation, AFError>) in
-            print("break")
-        }
+        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: UserManager.shared.binanceApiKey)]
+        return AF.request(url, method: .get, headers: headers).publishDecodable()
+    }
+    
+    func getAllTradingPairPrices() -> DataResponsePublisher<[BNSymbolPrice]> {
+        let url = "\(Constants.Binance.BASE_URL)/api/v3/ticker/price"
+        return AF.request(url).validate().publishDecodable()
+    }
+    
+    func createOrder(symbol: String, side: BNOrderSide, quantity: Double) -> DataResponsePublisher<BNOrder> {
+        var url = "\(Constants.Binance.BASE_URL)/api/v3/order"
+        let parameters = [
+            "symbol" : symbol,
+            "side" : side.rawValue,
+            "type" : "MARKET",
+            "quantity" : quantity,
+            "timestamp" : Date().millisecondsSince1970,
+            "recvWindow" : Constants.Binance.DEFAULT_RECWINDOW
+        ] as [String : Any]
+        var queryString = parameters.sorted { $0.0 < $1.0 }.map { "\($0.0)=\($0.1)"}.joined(separator: "&")
+        let signature = CryptographyTools.hmacSHA256(text: queryString, secret: UserManager.shared.binanceSecretKey)
+        queryString += "&signature=\(signature)"
+        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: UserManager.shared.binanceApiKey)]
+        url += "?\(queryString)"
+        return AF.request(url, method: .post, headers: headers, interceptor: nil, requestModifier: nil).publishDecodable()
+    }
+    
+    func getExchangeInformation() -> DataResponsePublisher<BNExchangeInfo> {
+        let url = "\(Constants.Binance.BASE_URL)/api/v3/exchangeInfo"
+        return AF.request(url, method: .get).publishDecodable()
+    }
+    
+}
+
+extension BinanceClient {
+    
+    private func prepareTimestampParameters(_ recWindow: Int = 5000) -> String {
+        return "timestamp=\(Date().millisecondsSince1970)&recvWindow=\(recWindow)"
     }
     
 }

@@ -17,7 +17,7 @@ struct ContentView: View {
                 .ignoresSafeArea(.all)
             VStack {
                 ForEach(viewModel.allocations) { allocation in
-                    Text("\(allocation.symbol) (\(allocation.ratio ?? 0.0)%)")
+                    Text("\(allocation.asset) (\((allocation.ratio ?? 0.0)*100)%)")
                         .foregroundColor(Color.green)
                 }
             }
@@ -26,9 +26,8 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear(perform: {
             UITableView.appearance().backgroundColor = UIColor.clear
-            viewModel.getListings()
-            
-            BinanceClient().getAccountInformation()
+            viewModel.startRebalance()
+            viewModel.loadAndCacheExchangeInfo()
         })
     }
 }

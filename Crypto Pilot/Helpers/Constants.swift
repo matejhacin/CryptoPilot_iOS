@@ -16,6 +16,12 @@ class Constants {
     
     class Binance {
         static let BASE_URL = "https://api.binance.com"
+        static let DEFAULT_RECWINDOW = 60000
+    }
+    
+    class Coins {
+        static let BASE_COIN = "BTC"
+        static let STABLE_COINS = ["USDC", "USDT", "PAX", "WBTC", "BUSD", "DAI"]
     }
     
 }

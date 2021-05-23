@@ -10,7 +10,7 @@ import Alamofire
 
 class CoinMarketCapClient {
     
-    func getListings(count: Int, onResponse: @escaping ((CMCListings?, AFError?) -> Void)) {
+    func getListings(count: Int) -> DataResponsePublisher<CMCListings> {
         let url = "\(Constants.CoinMarketCap.BASE_URL)/v1/cryptocurrency/listings/latest"
         let params = [
             "limit" : count,
@@ -19,10 +19,7 @@ class CoinMarketCapClient {
         let headers: HTTPHeaders = [
             "X-CMC_PRO_API_KEY" : Constants.CoinMarketCap.API_KEY
         ]
-        AF.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers)
-            .responseDecodable { (response: DataResponse<CMCListings, AFError>) in
-                onResponse(response.value, response.error)
-            }
+        return AF.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).publishDecodable()
     }
     
 }

@@ -9,13 +9,13 @@ import Foundation
 
 class CoinAllocation: Identifiable {
     
-    let symbol: String
+    let asset: String
     let marketCap: Double
     
     var ratio: Double?
     
     init(symbol: String, marketCap: Double) {
-        self.symbol = symbol
+        self.asset = symbol
         self.marketCap = marketCap
     }
     

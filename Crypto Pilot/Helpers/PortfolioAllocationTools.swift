@@ -9,9 +9,23 @@ import Foundation
 
 class PortfolioAllocationTools {
     
-    static func calculateTop20Allocations(coinsToAllocate: [CoinAllocation]) -> [CoinAllocation] {
+    private let allocationCount: Int
+    private let excludeStablecoins: Bool
+    
+    init(allocationCount: Int, excludeStablecoins: Bool) {
+        self.allocationCount = allocationCount
+        self.excludeStablecoins = excludeStablecoins
+    }
+    
+    func calculateAllocations(coinsToAllocate: [CoinAllocation]) throws -> [CoinAllocation] {
+        // Filter allocations to remove unwanted ones
+        var allocations = filterCoins(foundIn: coinsToAllocate)
+        
+        guard allocations.count == allocationCount else {
+            throw AllocationError.invalidCoinCount
+        }
+        
         let maxAllocationRatio = 0.1 // 10%
-        var allocations = coinsToAllocate
         let totalCap = calculateTotalMarketCap(allocations)
         
         // Calculate market cap ratio for each coin
@@ -40,15 +54,43 @@ class PortfolioAllocationTools {
             }
         }
         
+        if allocations.count != allocationCount {
+            throw AllocationError.miscalculation
+        }
+        
         return allocations
     }
     
-    static func calculateTotalMarketCap(_ allocations: [CoinAllocation]) -> Double {
+    func calculateTotalMarketCap(_ allocations: [CoinAllocation]) -> Double {
         var sum = 0.0
         for allocation in allocations {
             sum += allocation.marketCap
         }
         return sum
+    }
+    
+    func filterCoins(foundIn allocations: [CoinAllocation]) -> [CoinAllocation] {
+        // Exclude stablecoins
+        var filtered = allocations.filter({ !isStableCoin(symbol: $0.asset) })
+        
+        // Remove redundant coins
+        if filtered.count > allocationCount {
+            let alpha = filtered.count - allocationCount
+            filtered = filtered.dropLast(alpha)
+        }
+        
+        return filtered
+    }
+    
+    func isStableCoin(symbol: String) -> Bool {
+        return Constants.Coins.STABLE_COINS.contains(symbol)
+    }
+    
+    // MARK: Error Enum
+    
+    enum AllocationError: Error {
+        case invalidCoinCount
+        case miscalculation
     }
     
 }
