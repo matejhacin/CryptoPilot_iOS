@@ -33,13 +33,13 @@ class BinanceClient {
         return AF.request(url).validate().publishDecodable()
     }
     
-    func createOrder(symbol: String, side: BNOrderSide, quantity: Double) -> DataResponsePublisher<BNOrder> {
+    func createOrder(order: RebalanceOrder) -> DataResponsePublisher<BNOrder> {
         var url = "\(Constants.Binance.BASE_URL)/api/v3/order"
         let parameters = [
-            "symbol" : symbol,
-            "side" : side.rawValue,
+            "symbol" : order.symbol,
+            "side" : order.side.rawValue,
             "type" : "MARKET",
-            "quantity" : quantity,
+            "quantity" : order.fixedAmount!,
             "timestamp" : Date().millisecondsSince1970,
             "recvWindow" : Constants.Binance.DEFAULT_RECWINDOW
         ] as [String : Any]

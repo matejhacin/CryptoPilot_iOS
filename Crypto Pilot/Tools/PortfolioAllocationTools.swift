@@ -61,7 +61,7 @@ class PortfolioAllocationTools {
         return allocations
     }
     
-    func calculateTotalMarketCap(_ allocations: [CoinAllocation]) -> Double {
+    private func calculateTotalMarketCap(_ allocations: [CoinAllocation]) -> Double {
         var sum = 0.0
         for allocation in allocations {
             sum += allocation.marketCap
@@ -69,9 +69,9 @@ class PortfolioAllocationTools {
         return sum
     }
     
-    func filterCoins(foundIn allocations: [CoinAllocation]) -> [CoinAllocation] {
+    private func filterCoins(foundIn allocations: [CoinAllocation]) -> [CoinAllocation] {
         // Exclude stablecoins
-        var filtered = allocations.filter({ !isStableCoin(symbol: $0.asset) })
+        var filtered = allocations.filter({ !CoinUtility.isStableCoin(symbol: $0.asset) })
         
         // Remove redundant coins
         if filtered.count > allocationCount {
@@ -80,10 +80,6 @@ class PortfolioAllocationTools {
         }
         
         return filtered
-    }
-    
-    func isStableCoin(symbol: String) -> Bool {
-        return Constants.Coins.STABLE_COINS.contains(symbol)
     }
     
     // MARK: Error Enum

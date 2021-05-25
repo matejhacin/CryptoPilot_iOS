@@ -63,7 +63,7 @@ class UserPortfolio {
         for balance in accountInfo.balances {
             
             // Remove and ignore stable coints
-            if (tools.isStableCoin(symbol: balance.asset)) {
+            if (CoinUtility.isStableCoin(symbol: balance.asset)) {
                 continue
             }
             

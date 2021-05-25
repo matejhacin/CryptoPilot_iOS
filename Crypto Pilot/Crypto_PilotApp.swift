@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Crypto_PilotApp: App {
+    init() {
+        ExchangeInfo.shared.update()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RebalanceProgressView()
         }
     }
 }

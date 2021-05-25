@@ -12,7 +12,7 @@ class RebalanceTradeCalculator {
     private var userPortfolio: UserPortfolio
     let desiredAllocations: [CoinAllocation]
     private let allocationTools: PortfolioAllocationTools
-    private let exchangeInfo = LocalStorage.exchangeInfo
+    private let exchangeInfo = ExchangeInfo.shared.info
     private let tickers: [BNSymbolPrice]
     
     init(cmcListings: CMCListings, accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], tools: PortfolioAllocationTools) {
@@ -35,7 +35,7 @@ class RebalanceTradeCalculator {
         
         for coinBalance in balances {
             let allocatedCounterpart = desiredAllocations.filter({ $0.asset == coinBalance.asset }).first
-            let isStableCoin = allocationTools.isStableCoin(symbol: coinBalance.asset)
+            let isStableCoin = CoinUtility.isStableCoin(symbol: coinBalance.asset)
             let isBaseCoin = coinBalance.asset == Constants.Coins.BASE_COIN
             
             if isBaseCoin || isStableCoin {

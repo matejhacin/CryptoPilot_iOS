@@ -22,12 +22,20 @@ class RebalanceOrder {
         self.amount = amount
         self.side = side
         symbol = "\(asset)\(Constants.Coins.BASE_COIN)"
+        setSymbolRules()
     }
     
     var isExecutable: Bool {
         get {
             guard fixedAmount != nil && minAmount != nil else { return false }
             return fixedAmount! >= minAmount!
+        }
+    }
+    
+    private func setSymbolRules() {
+        if let symbol = ExchangeInfo.shared.info?.findSymbol(symbol: symbol), let stepSize = symbol.stepSize, let minQty = symbol.minQty  {
+            fixedAmount = NumberTools.roundDecimals(number: amount, precision: stepSize)
+            minAmount = minQty
         }
     }
     
