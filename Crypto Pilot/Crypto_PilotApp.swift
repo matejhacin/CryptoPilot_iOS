@@ -15,7 +15,7 @@ struct Crypto_PilotApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RebalanceProgressView()
+            WelcomeOnboardingView()
         }
     }
 }

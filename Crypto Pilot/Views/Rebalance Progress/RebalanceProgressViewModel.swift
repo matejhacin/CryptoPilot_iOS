@@ -11,16 +11,20 @@ import Alamofire
 
 class RebalanceProgressViewModel: ObservableObject {
     
-    @Published var allocations = [CoinAllocation]()
+    @Published var rebalanceProgress = PortfolioRebalancer.Progress.ready
     
+    private var cancelBag = Set<AnyCancellable>()
     private let portfolioRebalancer = PortfolioRebalancer()
     
     init() {
-        
+        portfolioRebalancer.$progress.sink { value in
+            print("\(value) -> \(value.rawValue)")
+            self.rebalanceProgress = value
+        }.store(in: &cancelBag)
     }
 
     func startRebalance() {
-        portfolioRebalancer.beginRebalance()
+        portfolioRebalancer.testBeginRebalance()
     }
     
 }

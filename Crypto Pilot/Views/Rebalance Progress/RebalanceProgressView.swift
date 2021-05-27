@@ -21,11 +21,11 @@ struct RebalanceProgressView: View {
                 Spacer()
                 // Steps
                 VStack(spacing: 58) {
-                    StepView(title: "Getting the latest values")
-                    StepView(title: "Executing sell orders")
-                    StepView(title: "Updating user portfolio")
-                    StepView(title: "Executing buy orders")
-                    StepView(title: "Done")
+                    StepView(step: 1, title: "Getting the latest values", inProgress: viewModel.rebalanceProgress.rawValue == 1, isFinished: viewModel.rebalanceProgress.rawValue > 1)
+                    StepView(step: 2, title: "Executing sell orders", inProgress: viewModel.rebalanceProgress.rawValue == 2, isFinished: viewModel.rebalanceProgress.rawValue > 2)
+                    StepView(step: 3, title: "Updating user portfolio", inProgress: viewModel.rebalanceProgress.rawValue == 3, isFinished: viewModel.rebalanceProgress.rawValue > 3)
+                    StepView(step: 4, title: "Executing buy orders", inProgress: viewModel.rebalanceProgress.rawValue == 4, isFinished: viewModel.rebalanceProgress.rawValue > 4)
+                    StepView(step: 5, title: "Done", inProgress: false, isFinished: viewModel.rebalanceProgress.rawValue == 5)
                 }
                 .offset(x: 21)
                 .background(HStack {
@@ -37,9 +37,10 @@ struct RebalanceProgressView: View {
                     Spacer()
                 })
                 Spacer()
+                Spacer()
                 // Button
                 Button("Start rebalance") {
-                    
+                    viewModel.startRebalance()
                 }
                 .buttonStyle(PrimaryButton())
                 .offset(y: -20)
@@ -49,31 +50,39 @@ struct RebalanceProgressView: View {
 }
 
 struct StepCircle: View {
-    @State var isFinished = false
+    var step: Int
+    var inProgress = false
+    var isFinished = false
     
     var body: some View {
         ZStack {
             Circle()
-                .foregroundColor(isFinished ? Color.green() : Color.gray())
-            if isFinished {
+                .foregroundColor(inProgress ? Color.blue() : isFinished ? Color.green() : Color.gray())
+            if inProgress {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white()))
+            } else if isFinished {
                 Image(systemName: "checkmark")
                     .resizable()
                     .frame(width: 16, height: 16)
             } else {
-                Text("X")
+                Text("\(step)")
                     .foregroundColor(Color.blakish())
                     .font(.system(size: 24))
             }
-        }.frame(width: 62, height: 62, alignment: .center)
+        }.frame(width: 64, height: 64, alignment: .center)
     }
 }
 
 struct StepView: View {
+    var step: Int
     var title: String
+    var inProgress: Bool
+    var isFinished: Bool
     
     var body: some View {
         HStack {
-            StepCircle()
+            StepCircle(step: step, inProgress: inProgress, isFinished: isFinished)
             Text(title)
                 .foregroundColor(Color.white())
                 .offset(x: 20)
@@ -84,7 +93,11 @@ struct StepView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        RebalanceProgressView()
-            .previewDevice("iPhone 12 Pro")
+        Group {
+            RebalanceProgressView()
+                .previewDevice("iPhone 12 Pro")
+            RebalanceProgressView()
+                .previewDevice("iPhone 8")
+        }
     }
 }

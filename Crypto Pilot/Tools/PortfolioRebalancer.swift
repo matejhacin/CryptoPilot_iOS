@@ -11,6 +11,8 @@ import Alamofire
 
 class PortfolioRebalancer {
     
+    @Published var progress = Progress.ready
+    
     private let cmc: CoinMarketCapClient
     private let bnb: BinanceClient
     private let allocationTools: PortfolioAllocationTools
@@ -23,6 +25,29 @@ class PortfolioRebalancer {
         self.cmc = cmc
         self.bnb = bnb
         self.allocationTools = allocationTools
+    }
+    
+    private var testCancellable: AnyCancellable?
+    func testBeginRebalance() {
+        progress = .gettingLatestValues
+        testCancellable = Timer.publish(every: 2, on: .main, in: .default)
+            .autoconnect()
+            .sink { value in
+                switch (self.progress) {
+                case .ready:
+                    self.progress = .gettingLatestValues
+                case .gettingLatestValues:
+                    self.progress = .executingSellOrders
+                case .executingSellOrders:
+                    self.progress = .updatingUserPortfolio
+                case .updatingUserPortfolio:
+                    self.progress = .executingBuyOrders
+                case .executingBuyOrders:
+                    self.progress = .done
+                case .done:
+                    self.testCancellable?.cancel()
+                }
+            }
     }
     
     func beginRebalance() {
@@ -131,6 +156,17 @@ class PortfolioRebalancer {
         for order in orders {
             addToQueue(order: order)
         }
+    }
+    
+    // MARK: Progress Enum
+    
+    enum Progress: Int {
+        case ready = 0
+        case gettingLatestValues = 1
+        case executingSellOrders = 2
+        case updatingUserPortfolio = 3
+        case executingBuyOrders = 4
+        case done = 5
     }
     
 }
