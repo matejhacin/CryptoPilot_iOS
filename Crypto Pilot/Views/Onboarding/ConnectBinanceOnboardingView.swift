@@ -1,5 +1,5 @@
 //
-//  RequirementsOnboardingView.swift
+//  ConnectBinanceOnboarding.swift
 //  Crypto Pilot
 //
 //  Created by Matej Hacin on 27/05/2021.
@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct RequirementsOnboardingView: View {
-    @State var navigateToNextView = false
+struct ConnectBinanceOnboardingView: View {
+    @State var binanceKey = ""
+    @State var binanceSecretKey = ""
     
     var body: some View {
         ZStack {
-            // Background color
+            // Background
             Color.blakish()
                 .ignoresSafeArea()
             
@@ -28,39 +29,49 @@ struct RequirementsOnboardingView: View {
                     Spacer()
                 }
                 
-                // Top texts
+                // Title
                 HStack {
                     Spacer()
-                    Text("What you'll need")
+                    Text("Connect to Binance")
                         .foregroundColor(.white())
                         .font(.headline)
                     Spacer()
                 }
                 
-                Text("1.) Binance account\n\n2.) Minimum sum cash on your account\n\n3.) Crypto Pilot rebalances your complete portfolio. Please make sure that we can rebalance contents of your portfolio.\n\n4.) Binance API keys")
+                // Subtitle
+                Text("Once you have a Binance account, generate your API keys and input them below.")
                     .foregroundColor(.white())
                     .font(.callout)
                 
-                Text("Dont have a Binance Account?\n(https://accounts.binance.com/en/register?)")
+                // Form
+                VStack(alignment: .center, spacing: 16) {
+                    TextField("Binance key", text: $binanceKey)
+                    TextField("Binance secret key", text: $binanceSecretKey)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .padding(.horizontal, 12)
+                .background(Color.altGray())
+                .cornerRadius(32)
+                
+                // Link to instructions
+                Text("How to set up API Keys?")
                     .foregroundColor(.white())
                     .font(.callout)
                     .underline()
-                    .onTapGesture {
-                        // TODO Open binance tutorial/website
-                    }
                 
+                // Confirm button
                 HStack {
                     Spacer()
-                    NavigationLink("", destination: ExplanationOnboardingView(), isActive: $navigateToNextView).hidden()
-                    Button("Ok! Continue") {
-                        navigateToNextView = true
+                    Button("Confirm Keys") {
+                        // TODO Figure out how to change root view
                     }
                     .buttonStyle(PrimaryButton())
                     .offset(y: 24)
                     Spacer()
                 }
                 
-                // Spacer to push everything up
+                // Push content up
                 Spacer()
             }
             .padding()
@@ -69,8 +80,8 @@ struct RequirementsOnboardingView: View {
     }
 }
 
-struct RequirementsOnboardingView_Previews: PreviewProvider {
+struct ConnectBinanceOnboarding_Previews: PreviewProvider {
     static var previews: some View {
-        RequirementsOnboardingView()
+        ConnectBinanceOnboardingView()
     }
 }

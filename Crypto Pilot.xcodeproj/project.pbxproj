@@ -26,6 +26,9 @@
 		659FF8712604FCDF003C6347 /* Color+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659FF8702604FCDF003C6347 /* Color+Colors.swift */; };
 		65A0946B26493744009CC964 /* BNOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0946A26493744009CC964 /* BNOrder.swift */; };
 		65B4B2BC265944D200743E4D /* BNError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B4B2BB265944D200743E4D /* BNError.swift */; };
+		65C4E52D26601D7000A4DAB7 /* ExplanationOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4E52C26601D7000A4DAB7 /* ExplanationOnboardingView.swift */; };
+		65C4E5302660230700A4DAB7 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4E52F2660230700A4DAB7 /* View+Extensions.swift */; };
+		65C4E5322660243900A4DAB7 /* ConnectBinanceOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4E5312660243900A4DAB7 /* ConnectBinanceOnboardingView.swift */; };
 		65D3E5ED265AEEBD001473E9 /* CoinUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */; };
 		65D3E5F0265AF114001473E9 /* PortfolioRebalancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3E5EF265AF114001473E9 /* PortfolioRebalancer.swift */; };
 		65DF898A261F725800A1B7B5 /* BNAccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF8989261F725800A1B7B5 /* BNAccountInformation.swift */; };
@@ -65,6 +68,9 @@
 		659FF8702604FCDF003C6347 /* Color+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Colors.swift"; sourceTree = "<group>"; };
 		65A0946A26493744009CC964 /* BNOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNOrder.swift; sourceTree = "<group>"; };
 		65B4B2BB265944D200743E4D /* BNError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNError.swift; sourceTree = "<group>"; };
+		65C4E52C26601D7000A4DAB7 /* ExplanationOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationOnboardingView.swift; sourceTree = "<group>"; };
+		65C4E52F2660230700A4DAB7 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		65C4E5312660243900A4DAB7 /* ConnectBinanceOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBinanceOnboardingView.swift; sourceTree = "<group>"; };
 		65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUtility.swift; sourceTree = "<group>"; };
 		65D3E5EF265AF114001473E9 /* PortfolioRebalancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioRebalancer.swift; sourceTree = "<group>"; };
 		65DF8989261F725800A1B7B5 /* BNAccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNAccountInformation.swift; sourceTree = "<group>"; };
@@ -233,6 +239,7 @@
 				65DF898C261F727F00A1B7B5 /* ObjectMapperExtensions.swift */,
 				659FF8702604FCDF003C6347 /* Color+Colors.swift */,
 				65DF89A3261F7FAC00A1B7B5 /* Date+Extensions.swift */,
+				65C4E52F2660230700A4DAB7 /* View+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -251,6 +258,8 @@
 			children = (
 				65FA31C8265FE12D005DED55 /* WelcomeOnboardingView.swift */,
 				65FA31CA265FE88B005DED55 /* RequirementsOnboardingView.swift */,
+				65C4E52C26601D7000A4DAB7 /* ExplanationOnboardingView.swift */,
+				65C4E5312660243900A4DAB7 /* ConnectBinanceOnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -281,6 +290,8 @@
 			dependencies = (
 			);
 			name = "Crypto Pilot";
+			packageProductDependencies = (
+			);
 			productName = "Crypto Pilot";
 			productReference = 6528AF78257EBE1500175E39 /* Crypto Pilot.app */;
 			productType = "com.apple.product-type.application";
@@ -308,6 +319,8 @@
 				Base,
 			);
 			mainGroup = 6528AF6F257EBE1500175E39;
+			packageReferences = (
+			);
 			productRefGroup = 6528AF79257EBE1500175E39 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -383,6 +396,7 @@
 				65DF8999261F786C00A1B7B5 /* BinanceClient.swift in Sources */,
 				65E3A75B264D23D3000A2ED5 /* BNExchangeInfo.swift in Sources */,
 				65DF89A0261F7A9D00A1B7B5 /* UserManager.swift in Sources */,
+				65C4E5322660243900A4DAB7 /* ConnectBinanceOnboardingView.swift in Sources */,
 				65E3A75D264D2979000A2ED5 /* NumberTools.swift in Sources */,
 				659FF8712604FCDF003C6347 /* Color+Colors.swift in Sources */,
 				6528AF7E257EBE1500175E39 /* RebalanceProgressView.swift in Sources */,
@@ -393,12 +407,14 @@
 				65DF898A261F725800A1B7B5 /* BNAccountInformation.swift in Sources */,
 				657EF55F2638039600295E87 /* UserPortfolio.swift in Sources */,
 				65588C2A263AA9E000727E85 /* RebalanceOrder.swift in Sources */,
+				65C4E52D26601D7000A4DAB7 /* ExplanationOnboardingView.swift in Sources */,
 				65DF89A4261F7FAC00A1B7B5 /* Date+Extensions.swift in Sources */,
 				65D3E5ED265AEEBD001473E9 /* CoinUtility.swift in Sources */,
 				65DF899D261F795C00A1B7B5 /* Constants.swift in Sources */,
 				65DF898D261F727F00A1B7B5 /* ObjectMapperExtensions.swift in Sources */,
 				65B4B2BC265944D200743E4D /* BNError.swift in Sources */,
 				65FA31C9265FE12D005DED55 /* WelcomeOnboardingView.swift in Sources */,
+				65C4E5302660230700A4DAB7 /* View+Extensions.swift in Sources */,
 				6528AF7C257EBE1500175E39 /* Crypto_PilotApp.swift in Sources */,
 				6502918B261CB5AA0024B102 /* CMCListings.swift in Sources */,
 				65A0946B26493744009CC964 /* BNOrder.swift in Sources */,
