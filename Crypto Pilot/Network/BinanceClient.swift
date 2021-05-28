@@ -13,18 +13,28 @@ class BinanceClient {
     
     func getAveragePrice(for symbol: String) -> DataResponsePublisher<BNAveragePrice> {
         let url = "\(Constants.Binance.BASE_URL)/api/v3/avgPrice?symbol=\(symbol.uppercased())USDT"
-        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: UserManager.shared.binanceApiKey)]
+        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: AuthState.shared.apiKey!)]
         
         return AF.request(url, method: .get, headers: headers).validate().publishDecodable(type: BNAveragePrice.self)
+    }
+    
+    func testConnection(apiKey: String, secretKey: String) -> DataResponsePublisher<BNAccountInformation> {
+        var url = "\(Constants.Binance.BASE_URL)/api/v3/account?"
+        var parameters = prepareTimestampParameters()
+        let parametersSignature = CryptographyTools.hmacSHA256(text: parameters, secret: secretKey)
+        parameters += "&signature=\(parametersSignature)"
+        url += parameters
+        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: apiKey)]
+        return AF.request(url, method: .get, headers: headers).publishDecodable()
     }
     
     func getAccountInformation() -> DataResponsePublisher<BNAccountInformation> {
         var url = "\(Constants.Binance.BASE_URL)/api/v3/account?"
         var parameters = prepareTimestampParameters()
-        let parametersSignature = CryptographyTools.hmacSHA256(text: parameters, secret: UserManager.shared.binanceSecretKey)
+        let parametersSignature = CryptographyTools.hmacSHA256(text: parameters, secret: AuthState.shared.secretKey!)
         parameters += "&signature=\(parametersSignature)"
         url += parameters
-        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: UserManager.shared.binanceApiKey)]
+        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: AuthState.shared.apiKey!)]
         return AF.request(url, method: .get, headers: headers).publishDecodable()
     }
     
@@ -44,9 +54,9 @@ class BinanceClient {
             "recvWindow" : Constants.Binance.DEFAULT_RECWINDOW
         ] as [String : Any]
         var queryString = parameters.sorted { $0.0 < $1.0 }.map { "\($0.0)=\($0.1)"}.joined(separator: "&")
-        let signature = CryptographyTools.hmacSHA256(text: queryString, secret: UserManager.shared.binanceSecretKey)
+        let signature = CryptographyTools.hmacSHA256(text: queryString, secret: AuthState.shared.secretKey!)
         queryString += "&signature=\(signature)"
-        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: UserManager.shared.binanceApiKey)]
+        let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: AuthState.shared.apiKey!)]
         url += "?\(queryString)"
         return AF.request(url, method: .post, headers: headers, interceptor: nil, requestModifier: nil).publishDecodable()
     }

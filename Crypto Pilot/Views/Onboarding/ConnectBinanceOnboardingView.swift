@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ConnectBinanceOnboardingView: View {
+    
+    @ObservedObject var viewModel = ConnectBinanceOnboardingViewModel()
     @State var binanceKey = ""
     @State var binanceSecretKey = ""
     
@@ -46,7 +48,13 @@ struct ConnectBinanceOnboardingView: View {
                 // Form
                 VStack(alignment: .center, spacing: 16) {
                     TextField("Binance key", text: $binanceKey)
+                        .preferredColorScheme(.dark)
+                        .foregroundColor(.white())
+                        .accentColor(.white())
                     TextField("Binance secret key", text: $binanceSecretKey)
+                        .preferredColorScheme(.dark)
+                        .foregroundColor(.white())
+                        .accentColor(.white())
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -63,12 +71,29 @@ struct ConnectBinanceOnboardingView: View {
                 // Confirm button
                 HStack {
                     Spacer()
-                    Button("Confirm Keys") {
-                        // TODO Figure out how to change root view
+                    if viewModel.isCheckingApiKeys {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white()))
+                            .offset(y: 24)
+                    } else {
+                        Button("Confirm Keys") {
+                            viewModel.saveApiKeys(apiKey: binanceKey, secretKey: binanceSecretKey)
+                        }
+                        .buttonStyle(PrimaryButton())
+                        .offset(y: 24)
                     }
-                    .buttonStyle(PrimaryButton())
-                    .offset(y: 24)
                     Spacer()
+                }
+                
+                // Error message
+                if viewModel.errorMsg != nil {
+                    HStack {
+                        Spacer()
+                        Text(viewModel.errorMsg!)
+                            .foregroundColor(.red())
+                        Spacer()
+                    }
+                    .offset(y: 24)
                 }
                 
                 // Push content up

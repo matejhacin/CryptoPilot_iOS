@@ -9,13 +9,19 @@ import SwiftUI
 
 @main
 struct Crypto_PilotApp: App {
+    @ObservedObject var authState = AuthState.shared
+    
     init() {
         ExchangeInfo.shared.update()
     }
     
     var body: some Scene {
         WindowGroup {
-            WelcomeOnboardingView()
+            if authState.isAuthenticated {
+                RebalanceProgressView()
+            } else {
+                WelcomeOnboardingView()
+            }
         }
     }
 }
