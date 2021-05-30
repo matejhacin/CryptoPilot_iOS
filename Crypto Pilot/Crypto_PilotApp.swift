@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct Crypto_PilotApp: App {
@@ -13,6 +14,7 @@ struct Crypto_PilotApp: App {
     
     init() {
         ExchangeInfo.shared.update()
+        FirebaseApp.configure()
     }
     
     var body: some Scene {
