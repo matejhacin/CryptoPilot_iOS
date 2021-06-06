@@ -33,6 +33,7 @@
 		65C4E53626609E1300A4DAB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65C4E53526609E1300A4DAB7 /* GoogleService-Info.plist */; };
 		65D3E5ED265AEEBD001473E9 /* CoinUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */; };
 		65D3E5F0265AF114001473E9 /* PortfolioRebalancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3E5EF265AF114001473E9 /* PortfolioRebalancer.swift */; };
+		65D7DD42266CDA99006758F8 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D7DD41266CDA99006758F8 /* RoundedCorners.swift */; };
 		65DF898A261F725800A1B7B5 /* BNAccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF8989261F725800A1B7B5 /* BNAccountInformation.swift */; };
 		65DF898D261F727F00A1B7B5 /* ObjectMapperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF898C261F727F00A1B7B5 /* ObjectMapperExtensions.swift */; };
 		65DF8996261F766300A1B7B5 /* CryptographyTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DF8995261F766300A1B7B5 /* CryptographyTools.swift */; };
@@ -47,6 +48,7 @@
 		65E6BC99263BFF5600142219 /* BNAveragePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6BC98263BFF5600142219 /* BNAveragePrice.swift */; };
 		65FA31C9265FE12D005DED55 /* WelcomeOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA31C8265FE12D005DED55 /* WelcomeOnboardingView.swift */; };
 		65FA31CB265FE88B005DED55 /* RequirementsOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA31CA265FE88B005DED55 /* RequirementsOnboardingView.swift */; };
+		65FE58FE2663A42F007D2A94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FE58FD2663A42F007D2A94 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,7 @@
 		65C4E53526609E1300A4DAB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUtility.swift; sourceTree = "<group>"; };
 		65D3E5EF265AF114001473E9 /* PortfolioRebalancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioRebalancer.swift; sourceTree = "<group>"; };
+		65D7DD41266CDA99006758F8 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		65DF8989261F725800A1B7B5 /* BNAccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNAccountInformation.swift; sourceTree = "<group>"; };
 		65DF898C261F727F00A1B7B5 /* ObjectMapperExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperExtensions.swift; sourceTree = "<group>"; };
 		65DF8995261F766300A1B7B5 /* CryptographyTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptographyTools.swift; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		65E6BC98263BFF5600142219 /* BNAveragePrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNAveragePrice.swift; sourceTree = "<group>"; };
 		65FA31C8265FE12D005DED55 /* WelcomeOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardingView.swift; sourceTree = "<group>"; };
 		65FA31CA265FE88B005DED55 /* RequirementsOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsOnboardingView.swift; sourceTree = "<group>"; };
+		65FE58FD2663A42F007D2A94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		67ACE49D859DCBDA99FB049C /* Pods-Crypto Pilot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto Pilot.debug.xcconfig"; path = "Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot.debug.xcconfig"; sourceTree = "<group>"; };
 		AAFDB352983C81EB273C4154 /* Pods-Crypto Pilot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto Pilot.release.xcconfig"; path = "Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot.release.xcconfig"; sourceTree = "<group>"; };
 		CCE92219EDEFBA719B874ABA /* Pods_Crypto_Pilot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crypto_Pilot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,9 +226,11 @@
 		659F0CA0260A4190007672A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				65FE58FA2663A413007D2A94 /* Home */,
 				65FA31C7265FE09E005DED55 /* Onboarding */,
 				65591EF5265D381D00CC2C63 /* Rebalance Progress */,
 				65591EF3265D23F700CC2C63 /* ButtonStyles.swift */,
+				65D7DD41266CDA99006758F8 /* RoundedCorners.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,6 +274,14 @@
 				65C4E53326608FEC00A4DAB7 /* ConnectBinanceOnboardingViewModel.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		65FE58FA2663A413007D2A94 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				65FE58FD2663A42F007D2A94 /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A985168655A9C365C2F1D0FB /* Frameworks */ = {
@@ -413,12 +427,14 @@
 				65DF8996261F766300A1B7B5 /* CryptographyTools.swift in Sources */,
 				65DF898A261F725800A1B7B5 /* BNAccountInformation.swift in Sources */,
 				657EF55F2638039600295E87 /* UserPortfolio.swift in Sources */,
+				65D7DD42266CDA99006758F8 /* RoundedCorners.swift in Sources */,
 				65588C2A263AA9E000727E85 /* RebalanceOrder.swift in Sources */,
 				65C4E52D26601D7000A4DAB7 /* ExplanationOnboardingView.swift in Sources */,
 				65DF89A4261F7FAC00A1B7B5 /* Date+Extensions.swift in Sources */,
 				65D3E5ED265AEEBD001473E9 /* CoinUtility.swift in Sources */,
 				65DF899D261F795C00A1B7B5 /* Constants.swift in Sources */,
 				65DF898D261F727F00A1B7B5 /* ObjectMapperExtensions.swift in Sources */,
+				65FE58FE2663A42F007D2A94 /* HomeView.swift in Sources */,
 				65B4B2BC265944D200743E4D /* BNError.swift in Sources */,
 				65FA31C9265FE12D005DED55 /* WelcomeOnboardingView.swift in Sources */,
 				65C4E5302660230700A4DAB7 /* View+Extensions.swift in Sources */,

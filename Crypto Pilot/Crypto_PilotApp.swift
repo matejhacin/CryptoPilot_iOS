@@ -19,11 +19,16 @@ struct Crypto_PilotApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if authState.isAuthenticated {
-                RebalanceProgressView()
-            } else {
-                WelcomeOnboardingView()
-            }
+//            Group {
+//                if authState.isAuthenticated {
+//                    RebalanceProgressView()
+//                } else {
+//                    WelcomeOnboardingView()
+//                }
+//            }
+            HomeView()
+//            .transition(.opacity)
+//            .animation(.easeInOut, value: true)
         }
     }
 }
