@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,6 +46,8 @@
 		65E3A75F264D302B000A2ED5 /* BNOrderSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E3A75E264D302B000A2ED5 /* BNOrderSide.swift */; };
 		65E3A762264D328F000A2ED5 /* ExchangeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E3A761264D328F000A2ED5 /* ExchangeInfo.swift */; };
 		65E6BC99263BFF5600142219 /* BNAveragePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E6BC98263BFF5600142219 /* BNAveragePrice.swift */; };
+		65F1AD22266E8C300066D1F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F1AD21266E8C300066D1F9 /* HomeViewModel.swift */; };
+		65F1AD25266E9B8E0066D1F9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 65F1AD24266E9B8E0066D1F9 /* SDWebImageSwiftUI */; };
 		65FA31C9265FE12D005DED55 /* WelcomeOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA31C8265FE12D005DED55 /* WelcomeOnboardingView.swift */; };
 		65FA31CB265FE88B005DED55 /* RequirementsOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA31CA265FE88B005DED55 /* RequirementsOnboardingView.swift */; };
 		65FE58FE2663A42F007D2A94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FE58FD2663A42F007D2A94 /* HomeView.swift */; };
@@ -92,6 +94,7 @@
 		65E3A75E264D302B000A2ED5 /* BNOrderSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNOrderSide.swift; sourceTree = "<group>"; };
 		65E3A761264D328F000A2ED5 /* ExchangeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInfo.swift; sourceTree = "<group>"; };
 		65E6BC98263BFF5600142219 /* BNAveragePrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNAveragePrice.swift; sourceTree = "<group>"; };
+		65F1AD21266E8C300066D1F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		65FA31C8265FE12D005DED55 /* WelcomeOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardingView.swift; sourceTree = "<group>"; };
 		65FA31CA265FE88B005DED55 /* RequirementsOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsOnboardingView.swift; sourceTree = "<group>"; };
 		65FE58FD2663A42F007D2A94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F1AD25266E9B8E0066D1F9 /* SDWebImageSwiftUI in Frameworks */,
 				56EA31B5BA034D5020F8ED5D /* Pods_Crypto_Pilot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				65FE58FD2663A42F007D2A94 /* HomeView.swift */,
+				65F1AD21266E8C300066D1F9 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			);
 			name = "Crypto Pilot";
 			packageProductDependencies = (
+				65F1AD24266E9B8E0066D1F9 /* SDWebImageSwiftUI */,
 			);
 			productName = "Crypto Pilot";
 			productReference = 6528AF78257EBE1500175E39 /* Crypto Pilot.app */;
@@ -340,6 +346,7 @@
 			);
 			mainGroup = 6528AF6F257EBE1500175E39;
 			packageReferences = (
+				65F1AD23266E9B8E0066D1F9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 6528AF79257EBE1500175E39 /* Products */;
 			projectDirPath = "";
@@ -444,6 +451,7 @@
 				65A0946B26493744009CC964 /* BNOrder.swift in Sources */,
 				65FA31CB265FE88B005DED55 /* RequirementsOnboardingView.swift in Sources */,
 				65591EF4265D23F700CC2C63 /* ButtonStyles.swift in Sources */,
+				65F1AD22266E8C300066D1F9 /* HomeViewModel.swift in Sources */,
 				657EF563263804A600295E87 /* CoinBalance.swift in Sources */,
 				65E3A762264D328F000A2ED5 /* ExchangeInfo.swift in Sources */,
 				65029198261CD6070024B102 /* CoinAllocation.swift in Sources */,
@@ -578,6 +586,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;
@@ -604,6 +613,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;
@@ -644,6 +654,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65F1AD23266E9B8E0066D1F9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65F1AD24266E9B8E0066D1F9 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65F1AD23266E9B8E0066D1F9 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6528AF70257EBE1500175E39 /* Project object */;
 }

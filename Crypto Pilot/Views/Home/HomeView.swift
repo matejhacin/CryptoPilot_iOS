@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Combine
+import SDWebImageSwiftUI
 
-struct HomeView: View {
+struct HomeView<Model>: View where Model: HomeViewModelProtocol {
+    @ObservedObject var viewModel: Model
+    
     var body: some View {
         ZStack {
             
@@ -28,7 +32,7 @@ struct HomeView: View {
                 }
                 
                 // Portfolio value
-                PortfolioValueView()
+                PortfolioValueView(currentValueText: viewModel.userPortfolio?.totalValueUSDPrettyText)
                 
                 // Coin table
                 VStack {
@@ -37,8 +41,13 @@ struct HomeView: View {
                     // Coin holding rows
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack {
-                            ForEach(0..<20) { _ in
-                                CoinHoldingRowView()
+                            if let balances = viewModel.userPortfolio?.balances {
+                                ForEach(balances, id: \.asset) { balance in
+                                    CoinHoldingRowView(balance: balance)
+                                }
+                            } else {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white()))
                             }
                         }
                     }
@@ -46,10 +55,15 @@ struct HomeView: View {
             }
             .padding()
         }
+        .onAppear {
+            viewModel.loadUserPortfolio()
+        }
     }
 }
 
 fileprivate struct PortfolioValueView: View {
+    var currentValueText: String?
+    
     var body: some View {
         VStack {
             
@@ -65,7 +79,7 @@ fileprivate struct PortfolioValueView: View {
             // Value
             HStack {
                 Spacer()
-                Text("$69,420.00")
+                Text(currentValueText ?? "Loading")
                     .foregroundColor(.white())
                     .font(.largeTitle)
                     .fontWeight(.medium)
@@ -128,19 +142,24 @@ fileprivate struct TableHeaderView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: HomeViewModelMock())
     }
 }
 
 fileprivate struct CoinHoldingRowView: View {
+    var balance: CoinBalance
+    
     var body: some View {
         VStack {
             HStack {
                 HStack(spacing: 10) {
-                    Image("logo")
+                    WebImage(url: URL(string: balance.imageUrl))
                         .resizable()
+                        .placeholder(Image("logo"))
+                        .transition(.fade(duration: 0.2))
+                        .scaledToFit()
                         .frame(width: 20, height: 20)
-                    Text("BTC")
+                    Text(balance.asset)
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                     Spacer()
@@ -150,12 +169,12 @@ fileprivate struct CoinHoldingRowView: View {
                 VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
-                        Text("$1,000.00")
+                        Text(balance.valueUSDPrettyText)
                             .foregroundColor(.white())
                     }
                     HStack {
                         Spacer()
-                        Text("10%")
+                        Text(balance.ratioPrettyText ?? "-")
                             .foregroundColor(.white())
                     }
                 }
@@ -165,7 +184,7 @@ fileprivate struct CoinHoldingRowView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        Text("$17,784.00")
+                        Text(balance.pricePerUnitUSDPrettyText)
                             .foregroundColor(.white())
                     }
                     HStack {

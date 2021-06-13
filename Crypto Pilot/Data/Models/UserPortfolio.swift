@@ -11,15 +11,13 @@ class UserPortfolio {
     
     private var accountInfo: BNAccountInformation
     private let tickers: [BNSymbolPrice]
-    private let tools: PortfolioAllocationTools
     
     let canTrade: Bool
     var balances: [CoinBalance]?
     
-    init(accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], tools: PortfolioAllocationTools) {
+    init(accountInfo: BNAccountInformation, tickers: [BNSymbolPrice]) {
         self.accountInfo = accountInfo
         self.tickers = tickers
-        self.tools = tools
         self.canTrade = accountInfo.canTrade
         try! mapPrices()
         recalculateBalanceRatios()
@@ -42,6 +40,13 @@ class UserPortfolio {
                 result += coin.valueBTC
             }
             return result
+        }
+    }
+    
+    var totalValueUSDPrettyText: String {
+        get {
+            let roundedValue = NumberTools.roundDecimals(number: totalValueUSD, precision: 0.01)
+            return "$\(roundedValue)"
         }
     }
     

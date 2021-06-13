@@ -37,4 +37,31 @@ class CoinBalance {
         }
     }
     
+    var ratioPrettyText: String? {
+        get {
+            guard let ratio = ratio else { return nil }
+            var fixedRatio = (ratio * 100)
+            fixedRatio = NumberTools.roundDecimals(number: fixedRatio, precision: 0.01)
+            return "\(fixedRatio)%"
+        }
+    }
+    
+    var valueUSDPrettyText: String {
+        get {
+            let roundedValue = NumberTools.roundDecimals(number: valueUSD, precision: 0.01)
+            return "$\(roundedValue)"
+        }
+    }
+    
+    var pricePerUnitUSDPrettyText: String {
+        get {
+            let roundedValue = NumberTools.roundDecimals(number: pricePerUnitUSD, precision: 0.01)
+            return "$\(roundedValue)"
+        }
+    }
+    
+    var imageUrl: String {
+        return "https://cryptoicons.org/api/icon/\(asset.lowercased())/200"
+    }
+    
 }

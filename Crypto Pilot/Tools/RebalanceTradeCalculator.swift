@@ -17,7 +17,7 @@ class RebalanceTradeCalculator {
     
     init(cmcListings: CMCListings, accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], tools: PortfolioAllocationTools) {
         self.tickers = tickers
-        userPortfolio = UserPortfolio(accountInfo: accountInfo, tickers: tickers, tools: tools)
+        userPortfolio = UserPortfolio(accountInfo: accountInfo, tickers: tickers)
         desiredAllocations = try! tools.calculateAllocations(coinsToAllocate: cmcListings.mapToCoinAllocations())
         allocationTools = tools
     }

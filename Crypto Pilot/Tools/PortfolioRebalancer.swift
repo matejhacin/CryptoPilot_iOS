@@ -60,7 +60,7 @@ class PortfolioRebalancer {
                     self.initRebalanceCalculator(cmcListings: listings, accountInformation: accountInfo, tickers: tickers)
                     self.beginExecutingSellOrders()
                 } else {
-                    print("break")
+                    print("break") // TODO Handle error
                 }
             }).store(in: &cancelBag)
     }
