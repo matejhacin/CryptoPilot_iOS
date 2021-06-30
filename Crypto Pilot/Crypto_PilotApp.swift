@@ -21,7 +21,7 @@ struct Crypto_PilotApp: App {
         WindowGroup {
             Group {
                 if authState.isAuthenticated {
-                    HomeView(viewModel: HomeViewModel())
+                    MainNavigationView()
                 } else {
                     WelcomeOnboardingView()
                 }

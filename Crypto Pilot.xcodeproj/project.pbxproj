@@ -50,6 +50,8 @@
 		65F1AD25266E9B8E0066D1F9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 65F1AD24266E9B8E0066D1F9 /* SDWebImageSwiftUI */; };
 		65FA31C9265FE12D005DED55 /* WelcomeOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA31C8265FE12D005DED55 /* WelcomeOnboardingView.swift */; };
 		65FA31CB265FE88B005DED55 /* RequirementsOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA31CA265FE88B005DED55 /* RequirementsOnboardingView.swift */; };
+		65FA4FED268C6A1F00AFC551 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA4FEC268C6A1F00AFC551 /* MainNavigationView.swift */; };
+		65FA4FF0268C6C5E00AFC551 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA4FEF268C6C5E00AFC551 /* SettingsView.swift */; };
 		65FE58FE2663A42F007D2A94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FE58FD2663A42F007D2A94 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,8 @@
 		65F1AD21266E8C300066D1F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		65FA31C8265FE12D005DED55 /* WelcomeOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardingView.swift; sourceTree = "<group>"; };
 		65FA31CA265FE88B005DED55 /* RequirementsOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsOnboardingView.swift; sourceTree = "<group>"; };
+		65FA4FEC268C6A1F00AFC551 /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
+		65FA4FEF268C6C5E00AFC551 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		65FE58FD2663A42F007D2A94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		67ACE49D859DCBDA99FB049C /* Pods-Crypto Pilot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto Pilot.debug.xcconfig"; path = "Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot.debug.xcconfig"; sourceTree = "<group>"; };
 		AAFDB352983C81EB273C4154 /* Pods-Crypto Pilot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto Pilot.release.xcconfig"; path = "Target Support Files/Pods-Crypto Pilot/Pods-Crypto Pilot.release.xcconfig"; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 		659F0CA0260A4190007672A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				65FA4FEE268C6C5600AFC551 /* Settings */,
+				65FA4FE9268C697400AFC551 /* Navigation */,
 				65FE58FA2663A413007D2A94 /* Home */,
 				65FA31C7265FE09E005DED55 /* Onboarding */,
 				65591EF5265D381D00CC2C63 /* Rebalance Progress */,
@@ -278,6 +284,22 @@
 				65C4E53326608FEC00A4DAB7 /* ConnectBinanceOnboardingViewModel.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		65FA4FE9268C697400AFC551 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				65FA4FEC268C6A1F00AFC551 /* MainNavigationView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		65FA4FEE268C6C5600AFC551 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				65FA4FEF268C6C5E00AFC551 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		65FE58FA2663A413007D2A94 /* Home */ = {
@@ -420,7 +442,9 @@
 				657EF5562638015200295E87 /* RebalanceTradeCalculator.swift in Sources */,
 				65D3E5F0265AF114001473E9 /* PortfolioRebalancer.swift in Sources */,
 				65E6BC99263BFF5600142219 /* BNAveragePrice.swift in Sources */,
+				65FA4FED268C6A1F00AFC551 /* MainNavigationView.swift in Sources */,
 				65029195261CD5910024B102 /* PortfolioAllocationTools.swift in Sources */,
+				65FA4FF0268C6C5E00AFC551 /* SettingsView.swift in Sources */,
 				65DF8999261F786C00A1B7B5 /* BinanceClient.swift in Sources */,
 				65E3A75B264D23D3000A2ED5 /* BNExchangeInfo.swift in Sources */,
 				65DF89A0261F7A9D00A1B7B5 /* AuthState.swift in Sources */,
@@ -586,7 +610,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;
@@ -613,7 +637,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;
