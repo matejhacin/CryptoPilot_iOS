@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RebalanceProgressView: View {
     @ObservedObject var viewModel = RebalanceProgressViewModel()
+    @Binding var viewState: RebalanceViewState
+    @Binding var presentedAsModal: Bool
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -38,13 +40,23 @@ struct RebalanceProgressView: View {
                 })
                 Spacer()
                 Spacer()
+                
                 // Button
-                Button("Start rebalance") {
-                    viewModel.startRebalance()
+                Button("Great! I am done") {
+                    if viewModel.shouldAskForNotificationPermission {
+                        viewState = .notificationPermission
+                    } else {
+                        presentedAsModal = false
+                    }
                 }
                 .buttonStyle(PrimaryButton())
                 .offset(y: -20)
+                .disabled(viewModel.rebalanceProgress != .done)
+                .opacity(viewModel.rebalanceProgress == .done ? 1.0 : 0.0)
             }
+        }
+        .onAppear {
+            viewModel.startRebalance()
         }
     }
 }
@@ -94,9 +106,9 @@ struct StepView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RebalanceProgressView()
+            RebalanceProgressView(viewState: .constant(.rebalanceInProgress), presentedAsModal: .constant(false))
                 .previewDevice("iPhone 12 Pro")
-            RebalanceProgressView()
+            RebalanceProgressView(viewState: .constant(.rebalanceInProgress), presentedAsModal: .constant(false))
                 .previewDevice("iPhone 8")
         }
     }

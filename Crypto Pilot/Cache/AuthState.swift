@@ -34,6 +34,12 @@ class AuthState: ObservableObject {
         loadApiKeys()
     }
     
+    func resetApiKeys() {
+        userDefaults.setValue(nil, forKey: "apiKey")
+        userDefaults.setValue(nil, forKey: "secretKey")
+        loadApiKeys()
+    }
+    
     // Hacin
     //    let binanceApiKey = "sEOBB9W6EbvHFGLobrHvRle1rTiqsqLAQX4YC5lijaqleegKprrR3VuaJgVuxzH9"
     //    let binanceSecretKey = "4P5gg7Jshu50XlxCBC6yIBnF9jTztkarjGlTZ1UOejKfr53m0kizCr6uxkUl6Yr3"

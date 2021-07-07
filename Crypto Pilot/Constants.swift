@@ -9,6 +9,15 @@ import Foundation
 
 class Constants {
     
+    class AppSettings {
+        static let REBALANCE_PERIOD = 30
+    }
+    
+    class UserDefaults {
+        static let LAST_REBALANCE_DATE = "last_rebalance_date"
+        static let NOTIFICATION_PERMISSION_ASKED = "notification_permission_asked"
+    }
+    
     class CoinMarketCap {
         static let BASE_URL = "https://pro-api.coinmarketcap.com"
         static let API_KEY = "69a0d9e3-fe46-4cab-8c20-a38f105f0cf3"
@@ -21,7 +30,7 @@ class Constants {
     
     class Coins {
         static let BASE_COIN = "BTC"
-        static let STABLE_COINS = ["USDC", "USDT", "PAX", "WBTC", "BUSD", "DAI"]
+        static let STABLE_COINS = ["USDC", "USDT", "PAX", "WBTC", "BUSD", "DAI", "SCRT"] // SCRT is not a stablecoin, remove when possible
     }
     
 }

@@ -16,6 +16,7 @@ class CoinBalance {
     let pricePerUnitBTC: Double
     
     var ratio: Double?
+    var percentChange24H: Double?
     
     init(symbol: String, free: Double, locked: Double, priceUsd: Double, priceBTC: Double) {
         self.asset = symbol
@@ -57,6 +58,15 @@ class CoinBalance {
         get {
             let roundedValue = NumberTools.roundDecimals(number: pricePerUnitUSD, precision: 0.01)
             return "$\(roundedValue)"
+        }
+    }
+    
+    var percentChange24HPrettyText: String? {
+        get {
+            guard let percentChange = percentChange24H else { return nil }
+            let prefix = percentChange > 0 ? "+" : "-"
+            let roundedValue = NumberTools.roundDecimals(number: percentChange, precision: 0.01)
+            return "\(prefix)\(roundedValue)%"
         }
     }
     

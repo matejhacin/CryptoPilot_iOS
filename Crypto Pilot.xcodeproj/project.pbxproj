@@ -19,6 +19,10 @@
 		65356D06264293DF0098E422 /* BNSymbolPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65356D05264293DF0098E422 /* BNSymbolPrice.swift */; };
 		65588C2A263AA9E000727E85 /* RebalanceOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65588C29263AA9E000727E85 /* RebalanceOrder.swift */; };
 		65591EF4265D23F700CC2C63 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65591EF3265D23F700CC2C63 /* ButtonStyles.swift */; };
+		65748B172690A1C7007520EE /* RebalanceConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65748B162690A1C7007520EE /* RebalanceConfirmationViewModel.swift */; };
+		65748B192690A2C0007520EE /* RebalanceTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65748B182690A2C0007520EE /* RebalanceTimer.swift */; };
+		65748B1B2690B15F007520EE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65748B1A2690B15F007520EE /* NotificationsManager.swift */; };
+		65748B1D2690BAA6007520EE /* NotificationsPermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65748B1C2690BAA6007520EE /* NotificationsPermissionViewModel.swift */; };
 		657EF5562638015200295E87 /* RebalanceTradeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EF5552638015200295E87 /* RebalanceTradeCalculator.swift */; };
 		657EF55F2638039600295E87 /* UserPortfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EF55E2638039600295E87 /* UserPortfolio.swift */; };
 		657EF563263804A600295E87 /* CoinBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EF562263804A600295E87 /* CoinBalance.swift */; };
@@ -26,11 +30,19 @@
 		659FF8712604FCDF003C6347 /* Color+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659FF8702604FCDF003C6347 /* Color+Colors.swift */; };
 		65A0946B26493744009CC964 /* BNOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0946A26493744009CC964 /* BNOrder.swift */; };
 		65B4B2BC265944D200743E4D /* BNError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B4B2BB265944D200743E4D /* BNError.swift */; };
+		65BFE859269453BF003DF5EC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFE858269453BF003DF5EC /* SettingsViewModel.swift */; };
+		65BFE85C26945801003DF5EC /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFE85B26945801003DF5EC /* MailView.swift */; };
+		65BFE85E26945C01003DF5EC /* MainNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFE85D26945C01003DF5EC /* MainNavigationViewModel.swift */; };
 		65C4E52D26601D7000A4DAB7 /* ExplanationOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4E52C26601D7000A4DAB7 /* ExplanationOnboardingView.swift */; };
 		65C4E5302660230700A4DAB7 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4E52F2660230700A4DAB7 /* View+Extensions.swift */; };
 		65C4E5322660243900A4DAB7 /* ConnectBinanceOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4E5312660243900A4DAB7 /* ConnectBinanceOnboardingView.swift */; };
 		65C4E53426608FEC00A4DAB7 /* ConnectBinanceOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4E53326608FEC00A4DAB7 /* ConnectBinanceOnboardingViewModel.swift */; };
 		65C4E53626609E1300A4DAB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65C4E53526609E1300A4DAB7 /* GoogleService-Info.plist */; };
+		65CA83CC26961B6C0019E489 /* PortfolioValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CA83CB26961B6C0019E489 /* PortfolioValue.swift */; };
+		65CD031D268F0E7F00D3ACB2 /* RebalanceConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CD031C268F0E7F00D3ACB2 /* RebalanceConfirmationView.swift */; };
+		65CD031F268F128500D3ACB2 /* RebalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CD031E268F128500D3ACB2 /* RebalanceView.swift */; };
+		65CD0321268F174800D3ACB2 /* NotificationsPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CD0320268F174800D3ACB2 /* NotificationsPermissionView.swift */; };
+		65CD0326268F17A900D3ACB2 /* RebalanceViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CD0325268F17A900D3ACB2 /* RebalanceViewState.swift */; };
 		65D3E5ED265AEEBD001473E9 /* CoinUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */; };
 		65D3E5F0265AF114001473E9 /* PortfolioRebalancer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D3E5EF265AF114001473E9 /* PortfolioRebalancer.swift */; };
 		65D7DD42266CDA99006758F8 /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D7DD41266CDA99006758F8 /* RoundedCorners.swift */; };
@@ -69,6 +81,10 @@
 		65356D05264293DF0098E422 /* BNSymbolPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNSymbolPrice.swift; sourceTree = "<group>"; };
 		65588C29263AA9E000727E85 /* RebalanceOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceOrder.swift; sourceTree = "<group>"; };
 		65591EF3265D23F700CC2C63 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		65748B162690A1C7007520EE /* RebalanceConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceConfirmationViewModel.swift; sourceTree = "<group>"; };
+		65748B182690A2C0007520EE /* RebalanceTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceTimer.swift; sourceTree = "<group>"; };
+		65748B1A2690B15F007520EE /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		65748B1C2690BAA6007520EE /* NotificationsPermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPermissionViewModel.swift; sourceTree = "<group>"; };
 		657EF5552638015200295E87 /* RebalanceTradeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceTradeCalculator.swift; sourceTree = "<group>"; };
 		657EF55E2638039600295E87 /* UserPortfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPortfolio.swift; sourceTree = "<group>"; };
 		657EF562263804A600295E87 /* CoinBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBalance.swift; sourceTree = "<group>"; };
@@ -76,11 +92,19 @@
 		659FF8702604FCDF003C6347 /* Color+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Colors.swift"; sourceTree = "<group>"; };
 		65A0946A26493744009CC964 /* BNOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNOrder.swift; sourceTree = "<group>"; };
 		65B4B2BB265944D200743E4D /* BNError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNError.swift; sourceTree = "<group>"; };
+		65BFE858269453BF003DF5EC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		65BFE85B26945801003DF5EC /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		65BFE85D26945C01003DF5EC /* MainNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewModel.swift; sourceTree = "<group>"; };
 		65C4E52C26601D7000A4DAB7 /* ExplanationOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationOnboardingView.swift; sourceTree = "<group>"; };
 		65C4E52F2660230700A4DAB7 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		65C4E5312660243900A4DAB7 /* ConnectBinanceOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBinanceOnboardingView.swift; sourceTree = "<group>"; };
 		65C4E53326608FEC00A4DAB7 /* ConnectBinanceOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectBinanceOnboardingViewModel.swift; sourceTree = "<group>"; };
 		65C4E53526609E1300A4DAB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		65CA83CB26961B6C0019E489 /* PortfolioValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioValue.swift; sourceTree = "<group>"; };
+		65CD031C268F0E7F00D3ACB2 /* RebalanceConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceConfirmationView.swift; sourceTree = "<group>"; };
+		65CD031E268F128500D3ACB2 /* RebalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceView.swift; sourceTree = "<group>"; };
+		65CD0320268F174800D3ACB2 /* NotificationsPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPermissionView.swift; sourceTree = "<group>"; };
+		65CD0325268F17A900D3ACB2 /* RebalanceViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceViewState.swift; sourceTree = "<group>"; };
 		65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUtility.swift; sourceTree = "<group>"; };
 		65D3E5EF265AF114001473E9 /* PortfolioRebalancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioRebalancer.swift; sourceTree = "<group>"; };
 		65D7DD41266CDA99006758F8 /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
@@ -151,6 +175,7 @@
 				65E3A75C264D2979000A2ED5 /* NumberTools.swift */,
 				65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */,
 				65D3E5EF265AF114001473E9 /* PortfolioRebalancer.swift */,
+				65748B1A2690B15F007520EE /* NotificationsManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -176,7 +201,7 @@
 		6528AF7A257EBE1500175E39 /* Crypto Pilot */ = {
 			isa = PBXGroup;
 			children = (
-				65DF899F261F7A9D00A1B7B5 /* AuthState.swift */,
+				65CA83CA26961AB70019E489 /* Cache */,
 				65DF899C261F795C00A1B7B5 /* Constants.swift */,
 				65E3A760264D3267000A2ED5 /* Data */,
 				6502918E261CB7D20024B102 /* Tools */,
@@ -200,13 +225,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		65591EF5265D381D00CC2C63 /* Rebalance Progress */ = {
+		65591EF5265D381D00CC2C63 /* Rebalance */ = {
 			isa = PBXGroup;
 			children = (
-				6528AF7D257EBE1500175E39 /* RebalanceProgressView.swift */,
-				65166590260A45C100D0F938 /* RebalanceProgressViewModel.swift */,
+				65CD0324268F179800D3ACB2 /* Confirmation */,
+				65CD0323268F179100D3ACB2 /* Progress */,
+				65CD031E268F128500D3ACB2 /* RebalanceView.swift */,
+				65CD0325268F17A900D3ACB2 /* RebalanceViewState.swift */,
 			);
-			path = "Rebalance Progress";
+			path = Rebalance;
 			sourceTree = "<group>";
 		};
 		657EF558263802BA00295E87 /* CoinMarketCap */ = {
@@ -234,11 +261,13 @@
 		659F0CA0260A4190007672A8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				65BFE85A269457F5003DF5EC /* Mail */,
+				65CD0322268F175000D3ACB2 /* Notifications */,
 				65FA4FEE268C6C5600AFC551 /* Settings */,
 				65FA4FE9268C697400AFC551 /* Navigation */,
 				65FE58FA2663A413007D2A94 /* Home */,
 				65FA31C7265FE09E005DED55 /* Onboarding */,
-				65591EF5265D381D00CC2C63 /* Rebalance Progress */,
+				65591EF5265D381D00CC2C63 /* Rebalance */,
 				65591EF3265D23F700CC2C63 /* ButtonStyles.swift */,
 				65D7DD41266CDA99006758F8 /* RoundedCorners.swift */,
 			);
@@ -263,6 +292,51 @@
 				65C4E52F2660230700A4DAB7 /* View+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		65BFE85A269457F5003DF5EC /* Mail */ = {
+			isa = PBXGroup;
+			children = (
+				65BFE85B26945801003DF5EC /* MailView.swift */,
+			);
+			path = Mail;
+			sourceTree = "<group>";
+		};
+		65CA83CA26961AB70019E489 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				65DF899F261F7A9D00A1B7B5 /* AuthState.swift */,
+				65748B182690A2C0007520EE /* RebalanceTimer.swift */,
+				65CA83CB26961B6C0019E489 /* PortfolioValue.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		65CD0322268F175000D3ACB2 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				65CD0320268F174800D3ACB2 /* NotificationsPermissionView.swift */,
+				65748B1C2690BAA6007520EE /* NotificationsPermissionViewModel.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		65CD0323268F179100D3ACB2 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				6528AF7D257EBE1500175E39 /* RebalanceProgressView.swift */,
+				65166590260A45C100D0F938 /* RebalanceProgressViewModel.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		65CD0324268F179800D3ACB2 /* Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				65CD031C268F0E7F00D3ACB2 /* RebalanceConfirmationView.swift */,
+				65748B162690A1C7007520EE /* RebalanceConfirmationViewModel.swift */,
+			);
+			path = Confirmation;
 			sourceTree = "<group>";
 		};
 		65E3A760264D3267000A2ED5 /* Data */ = {
@@ -290,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				65FA4FEC268C6A1F00AFC551 /* MainNavigationView.swift */,
+				65BFE85D26945C01003DF5EC /* MainNavigationViewModel.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -298,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				65FA4FEF268C6C5E00AFC551 /* SettingsView.swift */,
+				65BFE858269453BF003DF5EC /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -444,6 +520,8 @@
 				65E6BC99263BFF5600142219 /* BNAveragePrice.swift in Sources */,
 				65FA4FED268C6A1F00AFC551 /* MainNavigationView.swift in Sources */,
 				65029195261CD5910024B102 /* PortfolioAllocationTools.swift in Sources */,
+				65748B172690A1C7007520EE /* RebalanceConfirmationViewModel.swift in Sources */,
+				65CD0326268F17A900D3ACB2 /* RebalanceViewState.swift in Sources */,
 				65FA4FF0268C6C5E00AFC551 /* SettingsView.swift in Sources */,
 				65DF8999261F786C00A1B7B5 /* BinanceClient.swift in Sources */,
 				65E3A75B264D23D3000A2ED5 /* BNExchangeInfo.swift in Sources */,
@@ -452,6 +530,7 @@
 				65E3A75D264D2979000A2ED5 /* NumberTools.swift in Sources */,
 				659FF8712604FCDF003C6347 /* Color+Colors.swift in Sources */,
 				6528AF7E257EBE1500175E39 /* RebalanceProgressView.swift in Sources */,
+				65CD031F268F128500D3ACB2 /* RebalanceView.swift in Sources */,
 				65356D06264293DF0098E422 /* BNSymbolPrice.swift in Sources */,
 				65E3A75F264D302B000A2ED5 /* BNOrderSide.swift in Sources */,
 				659F0CA4260A41E9007672A8 /* CoinMarketCapClient.swift in Sources */,
@@ -462,18 +541,27 @@
 				65588C2A263AA9E000727E85 /* RebalanceOrder.swift in Sources */,
 				65C4E52D26601D7000A4DAB7 /* ExplanationOnboardingView.swift in Sources */,
 				65DF89A4261F7FAC00A1B7B5 /* Date+Extensions.swift in Sources */,
+				65748B1B2690B15F007520EE /* NotificationsManager.swift in Sources */,
+				65CD0321268F174800D3ACB2 /* NotificationsPermissionView.swift in Sources */,
+				65748B1D2690BAA6007520EE /* NotificationsPermissionViewModel.swift in Sources */,
 				65D3E5ED265AEEBD001473E9 /* CoinUtility.swift in Sources */,
 				65DF899D261F795C00A1B7B5 /* Constants.swift in Sources */,
 				65DF898D261F727F00A1B7B5 /* ObjectMapperExtensions.swift in Sources */,
+				65CD031D268F0E7F00D3ACB2 /* RebalanceConfirmationView.swift in Sources */,
 				65FE58FE2663A42F007D2A94 /* HomeView.swift in Sources */,
 				65B4B2BC265944D200743E4D /* BNError.swift in Sources */,
+				65BFE859269453BF003DF5EC /* SettingsViewModel.swift in Sources */,
 				65FA31C9265FE12D005DED55 /* WelcomeOnboardingView.swift in Sources */,
 				65C4E5302660230700A4DAB7 /* View+Extensions.swift in Sources */,
 				6528AF7C257EBE1500175E39 /* Crypto_PilotApp.swift in Sources */,
 				65C4E53426608FEC00A4DAB7 /* ConnectBinanceOnboardingViewModel.swift in Sources */,
+				65BFE85C26945801003DF5EC /* MailView.swift in Sources */,
 				6502918B261CB5AA0024B102 /* CMCListings.swift in Sources */,
+				65748B192690A2C0007520EE /* RebalanceTimer.swift in Sources */,
 				65A0946B26493744009CC964 /* BNOrder.swift in Sources */,
+				65CA83CC26961B6C0019E489 /* PortfolioValue.swift in Sources */,
 				65FA31CB265FE88B005DED55 /* RequirementsOnboardingView.swift in Sources */,
+				65BFE85E26945C01003DF5EC /* MainNavigationViewModel.swift in Sources */,
 				65591EF4265D23F700CC2C63 /* ButtonStyles.swift in Sources */,
 				65F1AD22266E8C300066D1F9 /* HomeViewModel.swift in Sources */,
 				657EF563263804A600295E87 /* CoinBalance.swift in Sources */,
@@ -610,7 +698,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;
@@ -637,7 +725,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;

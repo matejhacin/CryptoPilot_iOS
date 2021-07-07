@@ -13,7 +13,9 @@ enum MainNavigationState {
 }
 
 struct MainNavigationView: View {
+    @ObservedObject var viewModel = MainNavigationViewModel()
     @State var navState = MainNavigationState.home
+    @State var presentingRebalanceModal = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -21,7 +23,7 @@ struct MainNavigationView: View {
             // Main content
             switch navState {
             case .home:
-                HomeView(viewModel: HomeViewModelMock())
+                HomeView(viewModel: HomeViewModel())
             case .settings:
                 SettingsView()
             }
@@ -33,7 +35,7 @@ struct MainNavigationView: View {
                     MainNavigationButton(image: Image("home"), isSelected: navState == .home) {
                         navState = .home
                     }
-                    Spacer()
+                    Spacer().frame(width: 56)
                     MainNavigationButton(image: Image("settings"), isSelected: navState == .settings) {
                         navState = .settings
                     }
@@ -43,12 +45,18 @@ struct MainNavigationView: View {
                 ZStack {
                     Circle()
                         .strokeBorder(Color.blakish(), lineWidth: 1)
-                        .background(Circle().foregroundColor(.blue()))
+                        .background(Circle().foregroundColor(viewModel.rebalanceAvailable ? .blue() : .gray()))
                         .frame(width: 72, height: 72)
                     Image("rebalance")
-                        .foregroundColor(.white())
+                        .foregroundColor(viewModel.rebalanceAvailable ? .white() : .lightBlue())
                 }
                 .offset(y: -32)
+                .onTapGesture {
+                    presentingRebalanceModal = true
+                }
+                .sheet(isPresented: $presentingRebalanceModal, content: {
+                    RebalanceView(presentedAsModal: $presentingRebalanceModal)
+                })
             }
             .frame(height: 90)
             .background(Color.altGray())
@@ -77,6 +85,7 @@ struct MainNavigationButton: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height: 40)
                     .foregroundColor(isSelected ? .blue() : .white())
+                    .offset(y: -10)
                 Spacer()
             }
             Spacer()

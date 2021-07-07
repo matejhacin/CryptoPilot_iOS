@@ -12,6 +12,10 @@ import Firebase
 struct Crypto_PilotApp: App {
     @ObservedObject var authState = AuthState.shared
     
+    // On MainView, we are showing the last value of the portfolio (so the user can see the difference)
+    // We cache this value here on app startup in order to display the same value throughout the app lifecycle.
+    static let lastPortfolioValue = PortfolioValueRepository().getPortfolioValue()
+    
     init() {
         ExchangeInfo.shared.update()
         FirebaseApp.configure()
@@ -26,9 +30,6 @@ struct Crypto_PilotApp: App {
                     WelcomeOnboardingView()
                 }
             }
-//            HomeView()
-//            .transition(.opacity)
-//            .animation(.easeInOut, value: true)
         }
     }
 }

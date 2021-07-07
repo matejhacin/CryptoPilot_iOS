@@ -11,16 +11,19 @@ class UserPortfolio {
     
     private var accountInfo: BNAccountInformation
     private let tickers: [BNSymbolPrice]
+    private let cmcListings: CMCListings?
     
     let canTrade: Bool
     var balances: [CoinBalance]?
     
-    init(accountInfo: BNAccountInformation, tickers: [BNSymbolPrice]) {
+    init(accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], cmcListings: CMCListings? = nil) {
         self.accountInfo = accountInfo
         self.tickers = tickers
+        self.cmcListings = cmcListings
         self.canTrade = accountInfo.canTrade
         try! mapPrices()
         recalculateBalanceRatios()
+        map24hPercentChangesIfPossible()
     }
     
     var totalValueUSD: Double {
@@ -119,6 +122,18 @@ class UserPortfolio {
         // Now calculate ratio for each balance
         for balance in balances {
             balance.ratio = balance.valueUSD / totalBalance
+        }
+    }
+    
+    private func map24hPercentChangesIfPossible() {
+        guard let balances = balances, let listings = cmcListings?.data else { return }
+        
+        for balance in balances {
+            for listing in listings {
+                if balance.asset == listing.symbol {
+                    balance.percentChange24H = listing.quote.usd.percentChange24H
+                }
+            }
         }
     }
     

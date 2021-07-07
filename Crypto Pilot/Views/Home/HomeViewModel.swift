@@ -19,24 +19,34 @@ class HomeViewModel: HomeViewModelProtocol {
     
     private let cmcClient: CoinMarketCapClient
     private let bnClient: BinanceClient
+    private let portfolioValueRepository: PortfolioValueRepository
     private var cancelBag = Set<AnyCancellable>()
     
-    init(cmcClient: CoinMarketCapClient = CoinMarketCapClient(), bnClient: BinanceClient = BinanceClient()) {
+    init(cmcClient: CoinMarketCapClient = CoinMarketCapClient(), bnClient: BinanceClient = BinanceClient(), portfolioValueRepository: PortfolioValueRepository = PortfolioValueRepository()) {
         self.cmcClient = cmcClient
         self.bnClient = bnClient
+        self.portfolioValueRepository = portfolioValueRepository
     }
     
     func loadUserPortfolio() {
-        Publishers.Zip(
+        Publishers.Zip3(
             bnClient.getAccountInformation(),
-            bnClient.getAllTradingPairPrices())
-            .sink { accountInfo, tickers in
-                if let accountInfo = accountInfo.value, let tickers = tickers.value {
-                    self.userPortfolio = UserPortfolio(accountInfo: accountInfo, tickers: tickers)
+            bnClient.getAllTradingPairPrices(),
+            cmcClient.getListings(count: 100))
+            .sink { accountInfo, tickers, listings in
+                if let accountInfo = accountInfo.value, let tickers = tickers.value, let listings = listings.value {
+                    self.userPortfolio = UserPortfolio(accountInfo: accountInfo, tickers: tickers, cmcListings: listings)
+                    self.updateSavedPortfolioValue(newValue: self.userPortfolio?.totalValueUSD)
                 } else {
                     // TODO Handle error
                 }
             }.store(in: &cancelBag)
+    }
+    
+    private func updateSavedPortfolioValue(newValue: Double?) {
+        if let value = newValue {
+            portfolioValueRepository.savePortfolioValue(value)
+        }
     }
     
 }

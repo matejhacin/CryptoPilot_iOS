@@ -38,19 +38,42 @@ struct HomeView<Model>: View where Model: HomeViewModelProtocol {
                 VStack {
                     TableHeaderView()
                     
-                    // Coin holding rows
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack {
-                            if let balances = viewModel.userPortfolio?.balances {
+                    // If balances are loaded
+                    if let balances = viewModel.userPortfolio?.balances {
+                        if balances.isEmpty {
+                            // Empty state
+                            Spacer()
+                            Text("Your Binance account seems to be empty, or your assets are blacklisted by Crypto Pilot.")
+                                .multilineTextAlignment(.center)
+                            Spacer()
+                        } else {
+                            // Balances list
+                            ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(balances, id: \.asset) { balance in
                                     CoinHoldingRowView(balance: balance)
                                 }
-                            } else {
-                                ProgressView()
-                                    .progressViewStyle(CircularProgressViewStyle(tint: .white()))
                             }
                         }
+                    } else {
+                        // Loading state
+                        Spacer()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white()))
+                        Spacer()
                     }
+                    // Coin holding rows
+//                    ScrollView(.vertical, showsIndicators: false) {
+//                        VStack {
+//                            if let balances = viewModel.userPortfolio?.balances {
+//                                ForEach(balances, id: \.asset) { balance in
+//                                    CoinHoldingRowView(balance: balance)
+//                                }
+//                            } else {
+//                                ProgressView()
+//                                    .progressViewStyle(CircularProgressViewStyle(tint: .white()))
+//                            }
+//                        }
+//                    }
                 }
             }
             .padding()
@@ -85,14 +108,14 @@ fileprivate struct PortfolioValueView: View {
                     .fontWeight(.medium)
                     .offset(x: -10)
             }
-            
+             
             // Previous value
             HStack {
                 Text("Portfolio since last time app opened:")
                     .foregroundColor(.lightBlue())
                     .font(.footnote)
                 Spacer()
-                Text("$66,999.00")
+                Text(Crypto_PilotApp.lastPortfolioValue.valuePrettyText)
                     .foregroundColor(.lightBlue())
                     .font(.body)
             }
@@ -187,12 +210,14 @@ fileprivate struct CoinHoldingRowView: View {
                         Text(balance.pricePerUnitUSDPrettyText)
                             .foregroundColor(.white())
                     }
-                    HStack {
-                        Spacer()
-                        Text("+2.43%")
-                            .foregroundColor(.green())
-                        Image(systemName: "arrowtriangle.up.fill")
-                            .foregroundColor(.green())
+                    if let percentChange = balance.percentChange24H {
+                        HStack {
+                            Spacer()
+                            Text(balance.percentChange24HPrettyText!)
+                                .foregroundColor(percentChange > 0 ? .green() : .red())
+                            Image(systemName: percentChange > 0 ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
+                                .foregroundColor(percentChange > 0 ? .green() : .red())
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity)
