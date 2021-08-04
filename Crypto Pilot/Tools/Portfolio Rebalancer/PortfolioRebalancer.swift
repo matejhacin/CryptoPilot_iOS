@@ -11,7 +11,8 @@ import Alamofire
 
 class PortfolioRebalancer {
     
-    @Published var progress = Progress.ready
+    @Published var progress = RebalanceProgress.ready
+    var nonFatalErrors: [LocalizedError] = []
     
     private let cmc: CoinMarketCapClient
     private let bnb: BinanceClient
@@ -19,7 +20,7 @@ class PortfolioRebalancer {
     private var rebalanceCalculator: RebalanceTradeCalculator?
     
     private var cancelBag = Set<AnyCancellable>()
-    private var orderQueue: [DataResponsePublisher<BNOrder>] = []
+    private var orderQueue: [RebalanceOrder] = []
     
     init(cmc: CoinMarketCapClient = CoinMarketCapClient(), bnb: BinanceClient = BinanceClient(), allocationTools: PortfolioAllocationTools = PortfolioAllocationTools(allocationCount: 20, excludeStablecoins: true)) {
         self.cmc = cmc
@@ -41,11 +42,13 @@ class PortfolioRebalancer {
                 case .executingSellOrders:
                     self.progress = .updatingUserPortfolio
                 case .updatingUserPortfolio:
-                    self.progress = .executingBuyOrders
+                    self.progress = .failed(RebalanceError("Test"), self.progress)
                 case .executingBuyOrders:
                     self.progress = .done
                 case .done:
                     self.testCancellable?.cancel()
+                case .failed:
+                    print("Do nothing")
                 }
             }
     }
@@ -55,25 +58,33 @@ class PortfolioRebalancer {
             cmc.getListings(count: 50),
             bnb.getAccountInformation(),
             bnb.getAllTradingPairPrices())
+            .handleEvents(receiveSubscription: { _ in
+                self.progress = .gettingLatestValues
+            })
             .sink(receiveValue: { (listings, accountInfo, tickers) in
                 if let listings = listings.value, let accountInfo = accountInfo.value, let tickers = tickers.value {
                     self.initRebalanceCalculator(cmcListings: listings, accountInformation: accountInfo, tickers: tickers)
                     self.beginExecutingSellOrders()
                 } else {
-                    print("break") // TODO Handle error
+                    self.progress = .failed(RebalanceError("Something went wrong when gathering your account information. Check your connection and try again."), self.progress)
                 }
             }).store(in: &cancelBag)
     }
     
     private func initRebalanceCalculator(cmcListings: CMCListings, accountInformation: BNAccountInformation, tickers: [BNSymbolPrice]) {
-        rebalanceCalculator = RebalanceTradeCalculator(
-            cmcListings: cmcListings,
-            accountInfo: accountInformation,
-            tickers: tickers,
-            tools: allocationTools)
+        do {
+            rebalanceCalculator = try RebalanceTradeCalculator(
+                cmcListings: cmcListings,
+                accountInfo: accountInformation,
+                tickers: tickers,
+                tools: allocationTools)
+        } catch {
+            progress = .failed(error, progress)
+        }
     }
     
     private func beginExecutingSellOrders() {
+        progress = .executingSellOrders
         do {
             let sellOrders = try rebalanceCalculator!.getSellOrders()
             addToQueue(orders: sellOrders)
@@ -81,29 +92,36 @@ class PortfolioRebalancer {
                 self.refreshAccountInformation()
             }
         } catch {
-            // TODO Handle error
-            print(error)
+            progress = .failed(error, progress)
         }
     }
     
     private func refreshAccountInformation() {
-        bnb.getAccountInformation().sink { response in
-            if let error = response.error {
-                if let data = response.data, let bnError = try? JSONDecoder().decode(BNError.self, from: data) {
-                    print("--- !!! --- Account info error: \(bnError.msg) (\(bnError.code))")
+        let refreshError = RebalanceProgress.failed(RebalanceError("Something went wrong when refreshing account portfolio after completing sell orders. Check your network and rebalance again to continue with buy orders."), progress)
+        
+        bnb.getAccountInformation()
+            .handleEvents(receiveSubscription: { _ in
+                self.progress = .updatingUserPortfolio
+            })
+            .sink { response in
+                if let accountInfo = response.value {
+                    do {
+                        try self.rebalanceCalculator?.updateAccountInfo(accountInfo: accountInfo)
+                        self.beginExecutingBuyOrders()
+                    } catch {
+                        self.progress = refreshError
+                    }
                 } else {
-                    print("--- !!! --- Account info error: \(error)")
+                    if let _ = response.error, let data = response.data, let _ = try? JSONDecoder().decode(BNError.self, from: data) {
+                        // Possibly handle here as well
+                    }
+                    self.progress = refreshError
                 }
-            } else if let accountInfo = response.value {
-                self.rebalanceCalculator?.updateAccountInfo(accountInfo: accountInfo)
-                self.beginExecutingBuyOrders()
-            } else {
-                print("--- Not sure what happened while getting account info")
-            }
-        }.store(in: &cancelBag)
+            }.store(in: &cancelBag)
     }
     
     private func beginExecutingBuyOrders() {
+        progress = .executingBuyOrders
         do {
             let buyOrders = try self.rebalanceCalculator!.getBuyOrders()
             addToQueue(orders: buyOrders)
@@ -111,13 +129,12 @@ class PortfolioRebalancer {
                 self.finishRebalance()
             }
         } catch {
-            // TODO Handle error
-            print(error)
+            progress = .failed(error, progress)
         }
     }
     
     private func finishRebalance() {
-        print("Rebalance finished!")
+        progress = .done
     }
     
     private func executeQueuedOrders(onFinish: (() -> Void)?) {
@@ -126,47 +143,26 @@ class PortfolioRebalancer {
             return
         }
         
-        order.sink { response in
-            if let error = response.error {
-                if let data = response.data, let bnError = try? JSONDecoder().decode(BNError.self, from: data) {
-                    print("--- !!! --- Order error: \(bnError.msg) (\(bnError.code))")
-                } else {
-                    print("--- !!! --- Order error: \(error)")
-                }
-            } else if let value = response.value {
-                print("--- \(value.symbol) \(value.status)")
+        guard order.isExecutable else {
+            nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue) (transaction too small)"))
+            return
+        }
+        
+        bnb.createOrder(order: order).sink { response in
+            if let value = response.value {
+                print("--- Order success: \(value.symbol) \(value.status)")
             } else {
-                print("--- Not sure what happened with order: \(response.request?.url?.absoluteString ?? "NO_URL")")
+                if let _ = response.error, let data = response.data, let _ = try? JSONDecoder().decode(BNError.self, from: data) {
+                    // Possibly handle this as well
+                }
+                self.nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue) (transaction too small)"))
             }
             self.executeQueuedOrders(onFinish: onFinish)
         }.store(in: &cancelBag)
     }
     
-    private func addToQueue(order: RebalanceOrder) {
-        if order.isExecutable {
-            orderQueue.append(
-                bnb.createOrder(order: order)
-            )
-        } else {
-            // TODO Handle unknown state
-        }
-    }
-    
     private func addToQueue(orders: [RebalanceOrder]) {
-        for order in orders {
-            addToQueue(order: order)
-        }
-    }
-    
-    // MARK: Progress Enum
-    
-    enum Progress: Int {
-        case ready = 0
-        case gettingLatestValues = 1
-        case executingSellOrders = 2
-        case updatingUserPortfolio = 3
-        case executingBuyOrders = 4
-        case done = 5
+        orderQueue.append(contentsOf: orders)
     }
     
 }

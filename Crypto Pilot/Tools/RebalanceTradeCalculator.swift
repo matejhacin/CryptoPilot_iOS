@@ -15,20 +15,20 @@ class RebalanceTradeCalculator {
     private let exchangeInfo = ExchangeInfo.shared.info
     private let tickers: [BNSymbolPrice]
     
-    init(cmcListings: CMCListings, accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], tools: PortfolioAllocationTools) {
+    init(cmcListings: CMCListings, accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], tools: PortfolioAllocationTools) throws {
         self.tickers = tickers
-        userPortfolio = UserPortfolio(accountInfo: accountInfo, tickers: tickers)
-        desiredAllocations = try! tools.calculateAllocations(coinsToAllocate: cmcListings.mapToCoinAllocations())
+        userPortfolio = try UserPortfolio(accountInfo: accountInfo, tickers: tickers)
+        desiredAllocations = try tools.calculateAllocations(coinsToAllocate: cmcListings.mapToCoinAllocations())
         allocationTools = tools
     }
     
-    func updateAccountInfo(accountInfo: BNAccountInformation) {
-        userPortfolio.updateAccountInfo(accountInfo: accountInfo)
+    func updateAccountInfo(accountInfo: BNAccountInformation) throws {
+        try userPortfolio.updateAccountInfo(accountInfo: accountInfo)
     }
     
     func getSellOrders() throws -> [RebalanceOrder] {
         guard let balances = userPortfolio.balances else {
-            throw RebalanceError.portfolioEmptyBalances
+            throw Error.portfolioEmptyBalances
         }
         
         var orders: [RebalanceOrder] = []
@@ -44,7 +44,7 @@ class RebalanceTradeCalculator {
             
             if allocatedCounterpart != nil {
                 guard let balanceRatio = coinBalance.ratio, let desiredRatio = allocatedCounterpart!.ratio else {
-                    throw RebalanceError.missingRatioInformation
+                    throw Error.missingRatioInformation
                 }
                 
                 if balanceRatio > desiredRatio {
@@ -74,7 +74,7 @@ class RebalanceTradeCalculator {
             
             let currentRatio = currentAllocation?.ratio ?? 0.0
             guard let desiredRatio = desiredAllocation.ratio else {
-                throw RebalanceError.missingRatioInformation
+                throw Error.missingRatioInformation
             }
             
             if desiredRatio > currentRatio {
@@ -104,9 +104,18 @@ class RebalanceTradeCalculator {
         return nil
     }
     
-    enum RebalanceError: Error {
+    enum Error: LocalizedError {
         case portfolioEmptyBalances
         case missingRatioInformation
+        
+        var errorDescription: String? {
+            switch self {
+            case .portfolioEmptyBalances:
+                return "Your portfolio balance is empty. Please deposit some crypto funds and try again."
+            case .missingRatioInformation:
+                return "Encountered a problem when calculating your current portfolio allocation ratio."
+            }
+        }
     }
     
 }

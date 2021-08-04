@@ -16,12 +16,12 @@ class UserPortfolio {
     let canTrade: Bool
     var balances: [CoinBalance]?
     
-    init(accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], cmcListings: CMCListings? = nil) {
+    init(accountInfo: BNAccountInformation, tickers: [BNSymbolPrice], cmcListings: CMCListings? = nil) throws {
         self.accountInfo = accountInfo
         self.tickers = tickers
         self.cmcListings = cmcListings
         self.canTrade = accountInfo.canTrade
-        try! mapPrices()
+        try mapPrices()
         recalculateBalanceRatios()
         map24hPercentChangesIfPossible()
     }
@@ -53,9 +53,9 @@ class UserPortfolio {
         }
     }
     
-    func updateAccountInfo(accountInfo: BNAccountInformation) {
+    func updateAccountInfo(accountInfo: BNAccountInformation) throws {
         self.accountInfo = accountInfo
-        try! mapPrices()
+        try mapPrices()
         recalculateBalanceRatios()
     }
     

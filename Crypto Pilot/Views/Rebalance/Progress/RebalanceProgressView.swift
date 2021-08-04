@@ -23,11 +23,11 @@ struct RebalanceProgressView: View {
                 Spacer()
                 // Steps
                 VStack(spacing: 58) {
-                    StepView(step: 1, title: "Getting the latest values", inProgress: viewModel.rebalanceProgress.rawValue == 1, isFinished: viewModel.rebalanceProgress.rawValue > 1)
-                    StepView(step: 2, title: "Executing sell orders", inProgress: viewModel.rebalanceProgress.rawValue == 2, isFinished: viewModel.rebalanceProgress.rawValue > 2)
-                    StepView(step: 3, title: "Updating user portfolio", inProgress: viewModel.rebalanceProgress.rawValue == 3, isFinished: viewModel.rebalanceProgress.rawValue > 3)
-                    StepView(step: 4, title: "Executing buy orders", inProgress: viewModel.rebalanceProgress.rawValue == 4, isFinished: viewModel.rebalanceProgress.rawValue > 4)
-                    StepView(step: 5, title: "Done", inProgress: false, isFinished: viewModel.rebalanceProgress.rawValue == 5)
+                    StepView(step: 1, title: "Getting the latest values", state: viewModel.getStepState(for: 1))
+                    StepView(step: 2, title: "Executing sell orders", state: viewModel.getStepState(for: 2))
+                    StepView(step: 3, title: "Updating user portfolio", state: viewModel.getStepState(for: 3))
+                    StepView(step: 4, title: "Executing buy orders", state: viewModel.getStepState(for: 4))
+                    StepView(step: 5, title: "Done", state: viewModel.getStepState(for: 5))
                 }
                 .offset(x: 21)
                 .background(HStack {
@@ -63,17 +63,16 @@ struct RebalanceProgressView: View {
 
 struct StepCircle: View {
     var step: Int
-    var inProgress = false
-    var isFinished = false
+    var state: RebalanceProgressViewModel.StepState
     
     var body: some View {
         ZStack {
             Circle()
-                .foregroundColor(inProgress ? Color.blue() : isFinished ? Color.green() : Color.gray())
-            if inProgress {
+                .foregroundColor(state.color)
+            if state == .inProgress {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .white()))
-            } else if isFinished {
+            } else if state == .finished {
                 Image(systemName: "checkmark")
                     .resizable()
                     .frame(width: 16, height: 16)
@@ -89,12 +88,11 @@ struct StepCircle: View {
 struct StepView: View {
     var step: Int
     var title: String
-    var inProgress: Bool
-    var isFinished: Bool
+    var state: RebalanceProgressViewModel.StepState
     
     var body: some View {
         HStack {
-            StepCircle(step: step, inProgress: inProgress, isFinished: isFinished)
+            StepCircle(step: step, state: state)
             Text(title)
                 .foregroundColor(Color.white())
                 .offset(x: 20)

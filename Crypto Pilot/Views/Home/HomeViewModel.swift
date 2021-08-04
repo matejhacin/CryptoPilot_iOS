@@ -16,6 +16,7 @@ protocol HomeViewModelProtocol: ObservableObject {
 class HomeViewModel: HomeViewModelProtocol {
     
     @Published private(set) var userPortfolio: UserPortfolio?
+    @Published private(set) var error: Error?
     
     private let cmcClient: CoinMarketCapClient
     private let bnClient: BinanceClient
@@ -35,8 +36,12 @@ class HomeViewModel: HomeViewModelProtocol {
             cmcClient.getListings(count: 100))
             .sink { accountInfo, tickers, listings in
                 if let accountInfo = accountInfo.value, let tickers = tickers.value, let listings = listings.value {
-                    self.userPortfolio = UserPortfolio(accountInfo: accountInfo, tickers: tickers, cmcListings: listings)
-                    self.updateSavedPortfolioValue(newValue: self.userPortfolio?.totalValueUSD)
+                    do {
+                        self.userPortfolio = try UserPortfolio(accountInfo: accountInfo, tickers: tickers, cmcListings: listings)
+                        self.updateSavedPortfolioValue(newValue: self.userPortfolio?.totalValueUSD)
+                    } catch {
+                        self.error = error
+                    }
                 } else {
                     // TODO Handle error
                 }
@@ -55,7 +60,7 @@ class HomeViewModelMock: HomeViewModelProtocol {
     @Published private(set) var userPortfolio: UserPortfolio?
     
     func loadUserPortfolio() {
-        userPortfolio = UserPortfolio(
+        userPortfolio = try! UserPortfolio(
             accountInfo: BNAccountInformation(
                 makerCommission: 1,
                 takerCommission: 1,
