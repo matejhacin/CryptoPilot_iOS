@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct RebalanceProgressView: View {
     @ObservedObject var viewModel = RebalanceProgressViewModel()
@@ -42,8 +43,10 @@ struct RebalanceProgressView: View {
                 Spacer()
                 
                 // Button
-                Button("Great! I am done") {
-                    if viewModel.shouldAskForNotificationPermission {
+                Button(viewModel.isProgressFailed ? "Restart Rebalance" : "Great! I am done") {
+                    if viewModel.isProgressFailed {
+                        viewModel.startRebalance()
+                    } else if viewModel.shouldAskForNotificationPermission {
                         viewState = .notificationPermission
                     } else {
                         presentedAsModal = false
@@ -51,9 +54,14 @@ struct RebalanceProgressView: View {
                 }
                 .buttonStyle(PrimaryButton())
                 .offset(y: -20)
-                .disabled(viewModel.rebalanceProgress != .done)
-                .opacity(viewModel.rebalanceProgress == .done ? 1.0 : 0.0)
+                .disabled(viewModel.rebalanceProgress != .done && !viewModel.isProgressFailed)
+                .opacity(viewModel.rebalanceProgress == .done || viewModel.isProgressFailed ? 1.0 : 0.0)
             }
+            .alert(isPresented: $viewModel.showErrorDialog, content: {
+                Alert(title: Text(viewModel.isProgressFailed ? "Oops" : "Warning"), message: Text(viewModel.getErrorMessage()), dismissButton: .default(Text("Continue"), action: {
+                    viewModel.showErrorDialog = false
+                }))
+            })
         }
         .onAppear {
             viewModel.startRebalance()
@@ -65,17 +73,29 @@ struct StepCircle: View {
     var step: Int
     var state: RebalanceProgressViewModel.StepState
     
+    @State private var isAnimatingProgress = false
+    
     var body: some View {
         ZStack {
             Circle()
                 .foregroundColor(state.color)
             if state == .inProgress {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white()))
+                Image("rebalance")
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(.white())
+                    .rotationEffect(Angle(degrees: isAnimatingProgress ? 360 : 0.0))
+                    .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: false))
+                    .onAppear { isAnimatingProgress = true }
+                    .onDisappear { isAnimatingProgress = false }
             } else if state == .finished {
                 Image(systemName: "checkmark")
                     .resizable()
                     .frame(width: 16, height: 16)
+            } else if state == .failed {
+                Text("X")
+                    .foregroundColor(Color.blakish())
+                    .font(.system(size: 24))
             } else {
                 Text("\(step)")
                     .foregroundColor(Color.blakish())

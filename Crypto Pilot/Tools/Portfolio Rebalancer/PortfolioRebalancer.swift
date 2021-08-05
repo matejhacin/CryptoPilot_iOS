@@ -12,7 +12,11 @@ import Alamofire
 class PortfolioRebalancer {
     
     @Published var progress = RebalanceProgress.ready
-    var nonFatalErrors: [LocalizedError] = []
+    var nonFatalErrors: [LocalizedError] = [
+//        RebalanceError("Coin BTC didn't SELL (transaction too small)"),
+//        RebalanceError("Coin LTC didn't SELL (transaction too small)"),
+//        RebalanceError("Coin ETH didn't BUY (transaction too small)")
+    ]
     
     private let cmc: CoinMarketCapClient
     private let bnb: BinanceClient
@@ -42,7 +46,8 @@ class PortfolioRebalancer {
                 case .executingSellOrders:
                     self.progress = .updatingUserPortfolio
                 case .updatingUserPortfolio:
-                    self.progress = .failed(RebalanceError("Test"), self.progress)
+//                    self.progress = .failed(RebalanceError("Nothing really went wrong, just me being a silly goose 🦆"), self.progress)
+                    self.progress = .executingBuyOrders
                 case .executingBuyOrders:
                     self.progress = .done
                 case .done:
