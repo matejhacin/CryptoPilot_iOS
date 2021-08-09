@@ -37,7 +37,7 @@ struct ExplanationOnboardingView: View {
                     Spacer()
                 }
                 
-                Text("Crypto Pilot connects to Your Binance Exchange account via the API.\n\nWe use the exchange API to programatically execute trades. We do not have account withdrawal permission and all user data is is encrypted.\n\nIn order to connect to your exchange account, we'll need permissions to do so. That's why we need API keys setup.\n\nNote that you have full control over your API keys. You can delete them on the exchange at any time. We also recommend limiting withdrawal permissions so API keys are trade-only.")
+                Text("Crypto Pilot connects to Your Binance Exchange account via the API.\n\nWe use the exchange API to programatically execute trades. We do not have account withdrawal permission and all user data is encrypted.\n\nIn order to connect to your exchange account, we'll need permissions to do so. That's why you need to create the API keys on your exchange.\n\nNote that you have full control over your API keys. You can delete them on the exchange at any time. We also recommend limiting withdrawal permissions so API keys are trade-only.")
                     .foregroundColor(.white())
                     .font(.callout)
                 

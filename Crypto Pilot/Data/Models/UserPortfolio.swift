@@ -111,17 +111,22 @@ class UserPortfolio {
     }
     
     private func recalculateBalanceRatios() {
-        guard let balances = balances else { return }
+        guard balances != nil else { return }
         
         // Get total first
         var totalBalance = 0.0
-        for balance in balances {
+        for balance in balances! {
             totalBalance += balance.valueUSD
         }
         
         // Now calculate ratio for each balance
-        for balance in balances {
+        for balance in balances! {
             balance.ratio = balance.valueUSD / totalBalance
+        }
+        
+        // Sort
+        balances!.sort { b1, b2 in
+            return b1.ratio ?? 0 > b2.ratio ?? 0
         }
     }
     

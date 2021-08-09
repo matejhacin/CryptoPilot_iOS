@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RequirementsOnboardingView: View {
+    
+    @Environment(\.openURL) private var openURL
     @State var navigateToNextView = false
     
     var body: some View {
@@ -41,12 +43,12 @@ struct RequirementsOnboardingView: View {
                     .foregroundColor(.white())
                     .font(.callout)
                 
-                Text("Dont have a Binance Account?\n(https://accounts.binance.com/en/register?)")
+                Text("Dont have a Binance Account?")
                     .foregroundColor(.white())
                     .font(.callout)
                     .underline()
                     .onTapGesture {
-                        // TODO Open binance tutorial/website
+                        openURL(URL(string: "https://binance.com/en/register")!)
                     }
                 
                 HStack {

@@ -47,7 +47,7 @@ class RebalanceProgressViewModel: ObservableObject {
     }
 
     func startRebalance() {
-        portfolioRebalancer.testBeginRebalance()
+        portfolioRebalancer.beginRebalance()
     }
     
     func getStepState(for step: Int) -> StepState {
@@ -79,7 +79,7 @@ class RebalanceProgressViewModel: ObservableObject {
         if case .failed(let error, _) = rebalanceProgress {
             return "Rebalance stopped somewhere in the middle due to the following error:\n\n\(error.localizedDescription)\n\nTule bi lahko probala razložt kaj to pomeni za uporabnika (da je portfolio v neznanem stanju in lahko proba še 1x rebalance stisnit al pa double checka svoj binance account)"
         } else if portfolioRebalancer.nonFatalErrors.count > 0 {
-            var warningMessage = "Rebalance finished with the following warnings:\n"
+            var warningMessage = "Rebalance finished with the following issues:\n"
             for error in portfolioRebalancer.nonFatalErrors {
                 warningMessage += "\n• \(error.localizedDescription)"
             }

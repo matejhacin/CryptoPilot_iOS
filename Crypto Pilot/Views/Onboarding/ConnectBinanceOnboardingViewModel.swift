@@ -17,6 +17,8 @@ class ConnectBinanceOnboardingViewModel: ObservableObject {
     private let bnb = BinanceClient()
     private var disposeBag = Set<AnyCancellable>()
     
+    let tutorialURL = URL(string: "https://www.youtube.com/watch?v=Tx-MEZQEKXY&t=53s")!
+    
     func saveApiKeys(apiKey: String, secretKey: String) {
         isCheckingApiKeys = true
         errorMsg = nil

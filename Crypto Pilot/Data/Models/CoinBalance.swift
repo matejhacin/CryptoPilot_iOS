@@ -64,7 +64,7 @@ class CoinBalance {
     var percentChange24HPrettyText: String? {
         get {
             guard let percentChange = percentChange24H else { return nil }
-            let prefix = percentChange > 0 ? "+" : "-"
+            let prefix = percentChange > 0 ? "+" : "" // - is already appended to negative numbers
             let roundedValue = NumberTools.roundDecimals(number: percentChange, precision: 0.01)
             return "\(prefix)\(roundedValue)%"
         }

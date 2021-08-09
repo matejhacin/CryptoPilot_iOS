@@ -10,8 +10,10 @@ import SwiftUI
 struct ConnectBinanceOnboardingView: View {
     
     @ObservedObject var viewModel = ConnectBinanceOnboardingViewModel()
+    @Environment(\.openURL) private var openURL
     @State var binanceKey = ""
     @State var binanceSecretKey = ""
+    @State var permissionGiven = false
     
     var body: some View {
         ZStack {
@@ -55,6 +57,8 @@ struct ConnectBinanceOnboardingView: View {
                         .preferredColorScheme(.dark)
                         .foregroundColor(.white())
                         .accentColor(.white())
+                    Toggle("Give Crypto Pilot permission to rebalance", isOn: $permissionGiven)
+                        .font(.callout)
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -67,6 +71,9 @@ struct ConnectBinanceOnboardingView: View {
                     .foregroundColor(.white())
                     .font(.callout)
                     .underline()
+                    .onTapGesture {
+                        openURL(viewModel.tutorialURL)
+                    }
                 
                 // Confirm button
                 HStack {
@@ -77,10 +84,12 @@ struct ConnectBinanceOnboardingView: View {
                             .offset(y: 24)
                     } else {
                         Button("Confirm Keys") {
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             viewModel.saveApiKeys(apiKey: binanceKey, secretKey: binanceSecretKey)
                         }
                         .buttonStyle(PrimaryButton())
                         .offset(y: 24)
+                        .disabled(binanceKey == "" || binanceSecretKey == "" || !permissionGiven)
                     }
                     Spacer()
                 }

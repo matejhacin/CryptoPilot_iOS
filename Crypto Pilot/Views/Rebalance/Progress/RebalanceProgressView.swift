@@ -58,7 +58,7 @@ struct RebalanceProgressView: View {
                 .opacity(viewModel.rebalanceProgress == .done || viewModel.isProgressFailed ? 1.0 : 0.0)
             }
             .alert(isPresented: $viewModel.showErrorDialog, content: {
-                Alert(title: Text(viewModel.isProgressFailed ? "Oops" : "Warning"), message: Text(viewModel.getErrorMessage()), dismissButton: .default(Text("Continue"), action: {
+                Alert(title: Text(viewModel.isProgressFailed ? "Oops" : "Rebalance completed, with issues"), message: Text(viewModel.getErrorMessage()), dismissButton: .default(Text("OK"), action: {
                     viewModel.showErrorDialog = false
                 }))
             })

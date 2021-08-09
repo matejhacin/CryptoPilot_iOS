@@ -32,6 +32,7 @@
 		659FF8712604FCDF003C6347 /* Color+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659FF8702604FCDF003C6347 /* Color+Colors.swift */; };
 		65A0946B26493744009CC964 /* BNOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0946A26493744009CC964 /* BNOrder.swift */; };
 		65B4B2BC265944D200743E4D /* BNError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B4B2BB265944D200743E4D /* BNError.swift */; };
+		65BA622A26C1611C0031FE02 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BA622926C1611C0031FE02 /* Launch Screen.storyboard */; };
 		65BFE859269453BF003DF5EC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFE858269453BF003DF5EC /* SettingsViewModel.swift */; };
 		65BFE85C26945801003DF5EC /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFE85B26945801003DF5EC /* MailView.swift */; };
 		65BFE85E26945C01003DF5EC /* MainNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFE85D26945C01003DF5EC /* MainNavigationViewModel.swift */; };
@@ -97,6 +98,7 @@
 		659FF8702604FCDF003C6347 /* Color+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Colors.swift"; sourceTree = "<group>"; };
 		65A0946A26493744009CC964 /* BNOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNOrder.swift; sourceTree = "<group>"; };
 		65B4B2BB265944D200743E4D /* BNError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BNError.swift; sourceTree = "<group>"; };
+		65BA622926C1611C0031FE02 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		65BFE858269453BF003DF5EC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		65BFE85B26945801003DF5EC /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		65BFE85D26945C01003DF5EC /* MainNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewModel.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				6528AF84257EBE1700175E39 /* Info.plist */,
 				65C4E53526609E1300A4DAB7 /* GoogleService-Info.plist */,
 				6528AF81257EBE1700175E39 /* Preview Content */,
+				65BA622926C1611C0031FE02 /* Launch Screen.storyboard */,
 			);
 			path = "Crypto Pilot";
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 			files = (
 				6528AF83257EBE1700175E39 /* Preview Assets.xcassets in Resources */,
 				6528AF80257EBE1700175E39 /* Assets.xcassets in Resources */,
+				65BA622A26C1611C0031FE02 /* Launch Screen.storyboard in Resources */,
 				65C4E53626609E1300A4DAB7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

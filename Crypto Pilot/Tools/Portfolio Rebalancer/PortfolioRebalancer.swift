@@ -149,7 +149,7 @@ class PortfolioRebalancer {
         }
         
         guard order.isExecutable else {
-            nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue) (transaction too small)"))
+            nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue)\n(transaction too small)"))
             return
         }
         
@@ -160,7 +160,7 @@ class PortfolioRebalancer {
                 if let _ = response.error, let data = response.data, let _ = try? JSONDecoder().decode(BNError.self, from: data) {
                     // Possibly handle this as well
                 }
-                self.nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue) (transaction too small)"))
+                self.nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue)\n(transaction too small)"))
             }
             self.executeQueuedOrders(onFinish: onFinish)
         }.store(in: &cancelBag)

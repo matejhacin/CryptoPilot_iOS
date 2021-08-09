@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WelcomeOnboardingView: View {
+    
+    @Environment(\.openURL) private var openURL
     @State var navigateToNextView = false
     
     var body: some View {
@@ -42,7 +44,7 @@ struct WelcomeOnboardingView: View {
                         .foregroundColor(Color.white())
                         .font(.callout)
                     
-                    Text("If you would like to learn more on CP works check it out here.")
+                    Text("If you would like to learn more about how CP works check it out here.")
                         .foregroundColor(Color.white())
                         .font(.callout)
                     
@@ -50,7 +52,7 @@ struct WelcomeOnboardingView: View {
                     HStack {
                         Spacer()
                         Button("I would like to learn more") {
-                            // TODO Open web page
+                            openURL(URL(string: "https://getcryptopilot.com/faq/")!)
                         }
                         .buttonStyle(SecondaryButton())
                         Spacer()

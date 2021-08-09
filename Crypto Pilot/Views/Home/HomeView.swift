@@ -61,19 +61,6 @@ struct HomeView<Model>: View where Model: HomeViewModelProtocol {
                             .progressViewStyle(CircularProgressViewStyle(tint: .white()))
                         Spacer()
                     }
-                    // Coin holding rows
-//                    ScrollView(.vertical, showsIndicators: false) {
-//                        VStack {
-//                            if let balances = viewModel.userPortfolio?.balances {
-//                                ForEach(balances, id: \.asset) { balance in
-//                                    CoinHoldingRowView(balance: balance)
-//                                }
-//                            } else {
-//                                ProgressView()
-//                                    .progressViewStyle(CircularProgressViewStyle(tint: .white()))
-//                            }
-//                        }
-//                    }
                 }
             }
             .padding()
@@ -121,8 +108,7 @@ fileprivate struct PortfolioValueView: View {
             }
             .padding(.all, 10)
             .frame(maxWidth: .infinity)
-            .background(RoundedCorners(color: .blakish(), tl: 0, tr: 0, bl: 20, br: 20))
-            .opacity(0.5)
+            .background(RoundedCorners(color: Color(.sRGB, red: 18.0 / 255.0, green: 88.0 / 255.0, blue: 144.0 / 255.0, opacity: 1.0), tl: 0, tr: 0, bl: 20, br: 20))
         }
         .padding(.top, 10)
         .frame(maxWidth: .infinity)
@@ -145,16 +131,19 @@ fileprivate struct TableHeaderView: View {
                 HStack {
                     Text("COIN")
                         .foregroundColor(.white())
+                        .font(.subheadline)
                     Spacer()
                 }
                 .frame(maxWidth: .infinity)
                 Text("HOLDING")
                     .foregroundColor(.altGray())
+                    .font(.subheadline)
                     .frame(maxWidth: .infinity)
                 HStack {
                     Spacer()
                     Text("PRICE")
                         .foregroundColor(.altGray())
+                        .font(.subheadline)
                 }
                 .frame(maxWidth: .infinity)
             }
