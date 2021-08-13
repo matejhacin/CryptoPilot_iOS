@@ -48,6 +48,7 @@ struct RequirementsOnboardingView: View {
                     .font(.callout)
                     .underline()
                     .onTapGesture {
+                        Tracking.buttonClick(.register, on: .onboardingRequirements)
                         openURL(URL(string: "https://binance.com/en/register")!)
                     }
                 
@@ -55,6 +56,7 @@ struct RequirementsOnboardingView: View {
                     Spacer()
                     NavigationLink("", destination: ExplanationOnboardingView(), isActive: $navigateToNextView).hidden()
                     Button("Ok! Continue") {
+                        Tracking.buttonClick(.onboardingNext, on: .onboardingRequirements)
                         navigateToNextView = true
                     }
                     .buttonStyle(PrimaryButton())
@@ -68,6 +70,9 @@ struct RequirementsOnboardingView: View {
             .padding()
         }
         .hideNavigation()
+        .onAppear(perform: {
+            Tracking.viewOpened(.onboardingRequirements)
+        })
     }
 }
 

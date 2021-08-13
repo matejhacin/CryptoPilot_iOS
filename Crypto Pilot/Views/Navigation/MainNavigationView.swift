@@ -52,6 +52,7 @@ struct MainNavigationView: View {
                 }
                 .offset(y: -32)
                 .onTapGesture {
+                    Tracking.buttonClick(.rebalance, on: .home)
                     presentingRebalanceModal = true
                 }
                 .sheet(isPresented: $presentingRebalanceModal, content: {

@@ -46,22 +46,28 @@ struct SettingsView: View {
                 }
                 .alert(isPresented: $isShowingApiKeysAlert, content: {
                     Alert(title: Text("Are you sure?"), message: Text("You're about to remove your API keys and disconnect from your Binance portfolio. If you wish to reconnect, you will be able to do it after this step."), primaryButton: .destructive(Text("Yes, remove"), action: {
+                        Tracking.buttonClick(.removeApiKeys, on: .settings)
                         viewModel.unlinkApiKeys()
                     }), secondaryButton: .cancel())
                 })
                 SettingButton(title: "About Us") {
+                    Tracking.buttonClick(.aboutUs, on: .settings)
                     openURL(viewModel.aboutURL)
                 }
                 SettingButton(title: "FAQ") {
+                    Tracking.buttonClick(.faq, on: .settings)
                     openURL(viewModel.faqURL)
                 }
                 SettingButton(title: "Terms & Conditions") {
+                    Tracking.buttonClick(.termsAndConditions, on: .settings)
                     openURL(viewModel.termsURL)
                 }
                 SettingButton(title: "Privacy Policy") {
+                    Tracking.buttonClick(.privacyPolicy, on: .settings)
                     openURL(viewModel.privacyURL)
                 }
                 SettingButton(title: "Feedback / Bugs Report") {
+                    Tracking.buttonClick(.feedback, on: .settings)
                     isShowingMailView.toggle()
                 }
                 
@@ -75,8 +81,10 @@ struct SettingsView: View {
                     composer.setToRecipients(["info@getcryptopilot.com"])
                 }
             }
-            
         }
+        .onAppear(perform: {
+            Tracking.viewOpened(.settings)
+        })
     }
 }
 

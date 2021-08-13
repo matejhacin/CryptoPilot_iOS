@@ -59,7 +59,9 @@ struct RebalanceConfirmationView: View {
                 Spacer()
             }
             .padding(.horizontal, 16)
-            
+            .onAppear {
+                Tracking.viewOpened(.rebalanceConfirmation)
+            }
         }
     }
 }

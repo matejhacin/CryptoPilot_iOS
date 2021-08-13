@@ -52,6 +52,7 @@ struct WelcomeOnboardingView: View {
                     HStack {
                         Spacer()
                         Button("I would like to learn more") {
+                            Tracking.buttonClick(.faq, on: .onboardingWelcome)
                             openURL(URL(string: "https://getcryptopilot.com/faq/")!)
                         }
                         .buttonStyle(SecondaryButton())
@@ -69,6 +70,7 @@ struct WelcomeOnboardingView: View {
                         NavigationLink("", destination: RequirementsOnboardingView(), isActive: $navigateToNextView)
                             .hidden()
                         Button("Set me up!") {
+                            Tracking.buttonClick(.onboardingNext, on: .onboardingWelcome)
                             navigateToNextView = true
                         }
                         .buttonStyle(PrimaryButton())
@@ -82,6 +84,9 @@ struct WelcomeOnboardingView: View {
             }
             .hideNavigation()
         }
+        .onAppear(perform: {
+            Tracking.viewOpened(.onboardingWelcome)
+        })
     }
 }
 

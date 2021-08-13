@@ -64,6 +64,7 @@ struct RebalanceProgressView: View {
             })
         }
         .onAppear {
+            Tracking.viewOpened(.rebalanceProgress)
             viewModel.startRebalance()
         }
     }

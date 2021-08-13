@@ -49,7 +49,8 @@ struct NotificationsPermissionView: View {
                 HStack {
                     Spacer()
                     Button("Next") {
-                        viewModel.requestNotificationsPermission { _ in
+                        viewModel.requestNotificationsPermission { isAllowed in
+                            Tracking.notificationPermission(isAllowed: isAllowed)
                             presentedAsModal = false
                         }
                     }
@@ -59,6 +60,9 @@ struct NotificationsPermissionView: View {
                 
             }
             .padding()
+            .onAppear {
+                Tracking.viewOpened(.notificationPermission)
+            }
         }
     }
 }

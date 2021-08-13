@@ -28,6 +28,10 @@ class Constants {
         static let DEFAULT_RECWINDOW = 60000
     }
     
+    class MixPanel {
+        static let PROJECT_TOKEN = "fe2c968dd381b602defbb11f2feb9aa1"
+    }
+    
     class Coins {
         static let BASE_COIN = "BTC"
         static let STABLE_COINS = ["USDC", "USDT", "PAX", "WBTC", "BUSD", "DAI", "SCRT"] // SCRT is not a stablecoin, remove when possible

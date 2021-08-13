@@ -72,6 +72,7 @@ struct ConnectBinanceOnboardingView: View {
                     .font(.callout)
                     .underline()
                     .onTapGesture {
+                        Tracking.buttonClick(.tutorial, on: .onboardingConnectExchange)
                         openURL(viewModel.tutorialURL)
                     }
                 
@@ -84,6 +85,7 @@ struct ConnectBinanceOnboardingView: View {
                             .offset(y: 24)
                     } else {
                         Button("Confirm Keys") {
+                            Tracking.buttonClick(.confirmApiKeys, on: .onboardingConnectExchange)
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             viewModel.saveApiKeys(apiKey: binanceKey, secretKey: binanceSecretKey)
                         }
@@ -111,6 +113,9 @@ struct ConnectBinanceOnboardingView: View {
             .padding()
         }
         .hideNavigation()
+        .onAppear(perform: {
+            Tracking.viewOpened(.onboardingConnectExchange)
+        })
     }
 }
 

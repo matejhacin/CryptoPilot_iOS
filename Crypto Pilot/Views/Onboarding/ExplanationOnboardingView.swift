@@ -45,6 +45,7 @@ struct ExplanationOnboardingView: View {
                     Spacer()
                     NavigationLink("", destination: ConnectBinanceOnboardingView(), isActive: $navigateToNextView).hidden()
                     Button("Ok! Continue") {
+                        Tracking.buttonClick(.onboardingNext, on: .onboardingExplanation)
                         navigateToNextView = true
                     }
                     .buttonStyle(PrimaryButton())
@@ -58,6 +59,9 @@ struct ExplanationOnboardingView: View {
             .padding()
         }
         .hideNavigation()
+        .onAppear(perform: {
+            Tracking.viewOpened(.onboardingExplanation)
+        })
     }
 }
 

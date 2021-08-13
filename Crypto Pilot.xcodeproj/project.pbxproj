@@ -25,6 +25,7 @@
 		65748B192690A2C0007520EE /* RebalanceTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65748B182690A2C0007520EE /* RebalanceTimer.swift */; };
 		65748B1B2690B15F007520EE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65748B1A2690B15F007520EE /* NotificationsManager.swift */; };
 		65748B1D2690BAA6007520EE /* NotificationsPermissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65748B1C2690BAA6007520EE /* NotificationsPermissionViewModel.swift */; };
+		657841C926C6A4B100D3D0E0 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657841C826C6A4B100D3D0E0 /* Tracking.swift */; };
 		657EF5562638015200295E87 /* RebalanceTradeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EF5552638015200295E87 /* RebalanceTradeCalculator.swift */; };
 		657EF55F2638039600295E87 /* UserPortfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EF55E2638039600295E87 /* UserPortfolio.swift */; };
 		657EF563263804A600295E87 /* CoinBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657EF562263804A600295E87 /* CoinBalance.swift */; };
@@ -92,6 +93,7 @@
 		65748B182690A2C0007520EE /* RebalanceTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceTimer.swift; sourceTree = "<group>"; };
 		65748B1A2690B15F007520EE /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		65748B1C2690BAA6007520EE /* NotificationsPermissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPermissionViewModel.swift; sourceTree = "<group>"; };
+		657841C826C6A4B100D3D0E0 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		657EF5552638015200295E87 /* RebalanceTradeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebalanceTradeCalculator.swift; sourceTree = "<group>"; };
 		657EF55E2638039600295E87 /* UserPortfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPortfolio.swift; sourceTree = "<group>"; };
 		657EF562263804A600295E87 /* CoinBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBalance.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				65E3A75C264D2979000A2ED5 /* NumberTools.swift */,
 				65D3E5EC265AEEBD001473E9 /* CoinUtility.swift */,
 				65748B1A2690B15F007520EE /* NotificationsManager.swift */,
+				657841C826C6A4B100D3D0E0 /* Tracking.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				65C4E52D26601D7000A4DAB7 /* ExplanationOnboardingView.swift in Sources */,
 				65DF89A4261F7FAC00A1B7B5 /* Date+Extensions.swift in Sources */,
 				65748B1B2690B15F007520EE /* NotificationsManager.swift in Sources */,
+				657841C926C6A4B100D3D0E0 /* Tracking.swift in Sources */,
 				65CD0321268F174800D3ACB2 /* NotificationsPermissionView.swift in Sources */,
 				65C919FD26BBEE2E0041084A /* Haptics.swift in Sources */,
 				65748B1D2690BAA6007520EE /* NotificationsPermissionViewModel.swift in Sources */,
@@ -742,7 +746,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;
@@ -769,7 +773,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Crypto Pilot/Preview Content\"";
 				DEVELOPMENT_TEAM = MR82CHM66W;
 				ENABLE_PREVIEWS = YES;

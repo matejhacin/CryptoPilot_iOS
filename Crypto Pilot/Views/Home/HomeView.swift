@@ -66,6 +66,7 @@ struct HomeView<Model>: View where Model: HomeViewModelProtocol {
             .padding()
         }
         .onAppear {
+            Tracking.viewOpened(.home)
             viewModel.loadUserPortfolio()
         }
     }

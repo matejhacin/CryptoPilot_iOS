@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Mixpanel
 
 @main
 struct Crypto_PilotApp: App {
@@ -19,6 +20,7 @@ struct Crypto_PilotApp: App {
     init() {
         ExchangeInfo.shared.update()
         FirebaseApp.configure()
+        Mixpanel.initialize(token: Constants.MixPanel.PROJECT_TOKEN)
     }
     
     var body: some Scene {
