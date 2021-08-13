@@ -27,25 +27,28 @@ class RebalanceProgressViewModel: ObservableObject {
         self.rebalanceTimer = rebalanceTimer
         self.shouldAskForNotificationPermission = !notificationsManager.alreadyAskedForPermission
         
-        portfolioRebalancer.$progress.sink { value in
-            self.rebalanceProgress = value
-            if value == .executingSellOrders {
-                Haptics.shared.play(.light)
-            } else if value == .updatingUserPortfolio {
-                Haptics.shared.play(.light)
-            } else if value == .executingBuyOrders {
-                Haptics.shared.play(.light)
-            } else if value == .done {
-                Haptics.shared.notify(.success)
-                self.showWarningsDialogIfNeeded()
-                self.rebalanceDone()
-            } else if self.isProgressFailed {
-                Haptics.shared.notify(.error)
-                self.showErrorDialog = true
-            }
-        }.store(in: &cancelBag)
+        portfolioRebalancer.$progress
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                print(value)
+                self.rebalanceProgress = value
+                if value == .executingSellOrders {
+                    Haptics.shared.play(.light)
+                } else if value == .updatingUserPortfolio {
+                    Haptics.shared.play(.light)
+                } else if value == .executingBuyOrders {
+                    Haptics.shared.play(.light)
+                } else if value == .done {
+                    Haptics.shared.notify(.success)
+                    self.showWarningsDialogIfNeeded()
+                    self.rebalanceDone()
+                } else if self.isProgressFailed {
+                    Haptics.shared.notify(.error)
+                    self.showErrorDialog = true
+                }
+            }.store(in: &cancelBag)
     }
-
+    
     func startRebalance() {
         portfolioRebalancer.beginRebalance()
     }
@@ -69,15 +72,12 @@ class RebalanceProgressViewModel: ObservableObject {
     }
     
     var isProgressFailed: Bool {
-        if case .failed(_, _) = rebalanceProgress {
-            return true
-        }
-        return false
+        return rebalanceProgress.isFailed
     }
     
     func getErrorMessage() -> String {
         if case .failed(let error, _) = rebalanceProgress {
-            return "Rebalance stopped somewhere in the middle due to the following error:\n\n\(error.localizedDescription)\n\nTule bi lahko probala razložt kaj to pomeni za uporabnika (da je portfolio v neznanem stanju in lahko proba še 1x rebalance stisnit al pa double checka svoj binance account)"
+            return "Rebalance failed due to the following error:\n\n\(error.localizedDescription)"
         } else if portfolioRebalancer.nonFatalErrors.count > 0 {
             var warningMessage = "Rebalance finished with the following issues:\n"
             for error in portfolioRebalancer.nonFatalErrors {

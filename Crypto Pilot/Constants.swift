@@ -10,7 +10,7 @@ import Foundation
 class Constants {
     
     class AppSettings {
-        static let REBALANCE_PERIOD = 30
+        static let REBALANCE_PERIOD = 30 // Days
     }
     
     class UserDefaults {

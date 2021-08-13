@@ -62,7 +62,7 @@ class RebalanceTimer {
     private func updateRebalanceAllowed() {
         if let days = daysSinceLastRebalance {
             let isAllowed = days >= Constants.AppSettings.REBALANCE_PERIOD
-            rebalanceAllowed = true // TODO Uncomment when doing things for real
+            rebalanceAllowed = isAllowed
         } else {
             rebalanceAllowed = true
         }

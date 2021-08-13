@@ -52,7 +52,7 @@ struct Symbol: Codable {
 }
 
 struct Filter: Codable {
-    var filterType: FilterType
+    var filterType: FilterType?
     var minPrice, maxPrice, tickSize, multiplierUp: String?
     var multiplierDown: String?
     var avgPriceMins: Int?
@@ -70,13 +70,17 @@ enum FilterType: String, Codable {
     case minNotional = "MIN_NOTIONAL"
     case percentPrice = "PERCENT_PRICE"
     case priceFilter = "PRICE_FILTER"
+    case maxNumIcebergOrders = "MAX_NUM_ICEBERG_ORDERS"
+    case maxPosition = "MAX_POSITION"
 }
 
 enum OrderType: String, Codable {
     case limit = "LIMIT"
     case limitMaker = "LIMIT_MAKER"
     case market = "MARKET"
+    case stopLoss = "STOP_LOSS"
     case stopLossLimit = "STOP_LOSS_LIMIT"
+    case takeProfit = "TAKE_PROFIT"
     case takeProfitLimit = "TAKE_PROFIT_LIMIT"
 }
 

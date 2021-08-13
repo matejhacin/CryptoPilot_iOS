@@ -58,7 +58,9 @@ class BinanceClient {
         queryString += "&signature=\(signature)"
         let headers: HTTPHeaders = [HTTPHeader(name: "X-MBX-APIKEY", value: AuthState.shared.apiKey!)]
         url += "?\(queryString)"
-        return AF.request(url, method: .post, headers: headers, interceptor: nil, requestModifier: nil).publishDecodable()
+        return AF.request(url, method: .post, headers: headers, interceptor: nil, requestModifier: nil).responseString(completionHandler: { response in
+            print("--------\n\(response.value)\n--------")
+        }).publishDecodable()
     }
     
     func getExchangeInformation() -> DataResponsePublisher<BNExchangeInfo> {

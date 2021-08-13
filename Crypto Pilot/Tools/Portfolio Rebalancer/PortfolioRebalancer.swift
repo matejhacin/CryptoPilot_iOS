@@ -13,9 +13,9 @@ class PortfolioRebalancer {
     
     @Published var progress = RebalanceProgress.ready
     var nonFatalErrors: [LocalizedError] = [
-//        RebalanceError("Coin BTC didn't SELL (transaction too small)"),
-//        RebalanceError("Coin LTC didn't SELL (transaction too small)"),
-//        RebalanceError("Coin ETH didn't BUY (transaction too small)")
+        //        RebalanceError("Coin BTC didn't SELL (transaction too small)"),
+        //        RebalanceError("Coin LTC didn't SELL (transaction too small)"),
+        //        RebalanceError("Coin ETH didn't BUY (transaction too small)")
     ]
     
     private let cmc: CoinMarketCapClient
@@ -46,7 +46,7 @@ class PortfolioRebalancer {
                 case .executingSellOrders:
                     self.progress = .updatingUserPortfolio
                 case .updatingUserPortfolio:
-//                    self.progress = .failed(RebalanceError("Nothing really went wrong, just me being a silly goose 🦆"), self.progress)
+                    // self.progress = .failed(RebalanceError("Nothing really went wrong, just me being a silly goose 🦆"), self.progress)
                     self.progress = .executingBuyOrders
                 case .executingBuyOrders:
                     self.progress = .done
@@ -59,13 +59,13 @@ class PortfolioRebalancer {
     }
     
     func beginRebalance() {
+        self.progress = .gettingLatestValues
         Publishers.Zip3(
             cmc.getListings(count: 50),
             bnb.getAccountInformation(),
             bnb.getAllTradingPairPrices())
-            .handleEvents(receiveSubscription: { _ in
-                self.progress = .gettingLatestValues
-            })
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.global())
             .sink(receiveValue: { (listings, accountInfo, tickers) in
                 if let listings = listings.value, let accountInfo = accountInfo.value, let tickers = tickers.value {
                     self.initRebalanceCalculator(cmcListings: listings, accountInformation: accountInfo, tickers: tickers)
@@ -89,6 +89,8 @@ class PortfolioRebalancer {
     }
     
     private func beginExecutingSellOrders() {
+        guard !progress.isFailed else { return }
+        
         progress = .executingSellOrders
         do {
             let sellOrders = try rebalanceCalculator!.getSellOrders()
@@ -102,9 +104,13 @@ class PortfolioRebalancer {
     }
     
     private func refreshAccountInformation() {
+        guard !progress.isFailed else { return }
+        
         let refreshError = RebalanceProgress.failed(RebalanceError("Something went wrong when refreshing account portfolio after completing sell orders. Check your network and rebalance again to continue with buy orders."), progress)
         
         bnb.getAccountInformation()
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.global())
             .handleEvents(receiveSubscription: { _ in
                 self.progress = .updatingUserPortfolio
             })
@@ -126,6 +132,8 @@ class PortfolioRebalancer {
     }
     
     private func beginExecutingBuyOrders() {
+        guard !progress.isFailed else { return }
+        
         progress = .executingBuyOrders
         do {
             let buyOrders = try self.rebalanceCalculator!.getBuyOrders()
@@ -143,6 +151,8 @@ class PortfolioRebalancer {
     }
     
     private func executeQueuedOrders(onFinish: (() -> Void)?) {
+        guard !progress.isFailed else { return }
+        
         guard let order = orderQueue.popLast() else {
             onFinish?()
             return
@@ -150,20 +160,36 @@ class PortfolioRebalancer {
         
         guard order.isExecutable else {
             nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue)\n(transaction too small)"))
+            executeQueuedOrders(onFinish: onFinish)
             return
         }
         
-        bnb.createOrder(order: order).sink { response in
-            if let value = response.value {
-                print("--- Order success: \(value.symbol) \(value.status)")
-            } else {
-                if let _ = response.error, let data = response.data, let _ = try? JSONDecoder().decode(BNError.self, from: data) {
-                    // Possibly handle this as well
+        bnb.createOrder(order: order)
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.global())
+            .sink { response in
+                var continueExecutingOrders = true
+                if let value = response.value {
+                    print("--- Order success: \(value.symbol) \(value.status)")
+                } else if let _ = response.error, let data = response.data, let error = try? JSONDecoder().decode(BNError.self, from: data) {
+                    switch error.code {
+                    case -2015: // Invalid API-key, IP, or permissions for action.
+                        continueExecutingOrders = false
+                        self.progress = .failed(RebalanceError("Rebalance stopped due to insufficient trading permissions. Please make sure your generated API keys have spot & margin trading enabled."), self.progress)
+                    case -1013:
+                        self.nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue)\n(transaction too small)"))
+                    default:
+                        self.nonFatalErrors.append(RebalanceError(error.msg))
+                    }
+                } else {
+                    self.nonFatalErrors.append(RebalanceError("Trade order to \(order.side.rawValue) \(order.asset) failed due to an unknown error"))
                 }
-                self.nonFatalErrors.append(RebalanceError("Coin \(order.symbol) didn't \(order.side.rawValue)\n(transaction too small)"))
-            }
-            self.executeQueuedOrders(onFinish: onFinish)
-        }.store(in: &cancelBag)
+                if continueExecutingOrders {
+                    self.executeQueuedOrders(onFinish: onFinish)
+                } else {
+                    self.orderQueue.removeAll()
+                }
+            }.store(in: &cancelBag)
     }
     
     private func addToQueue(orders: [RebalanceOrder]) {

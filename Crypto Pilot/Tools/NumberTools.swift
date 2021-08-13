@@ -9,9 +9,14 @@ import Foundation
 
 class NumberTools {
     
-    static func roundDecimals(number: Double, precision: Double) -> Double {
+    static func roundDecimals(number: Double, precision: Double, roundDown: Bool = false) -> Double {
         let multiplier = 1 / precision
-        return Double(round(number * multiplier) / multiplier)
+        if roundDown {
+            return Double(floor(number * multiplier) / multiplier)
+        } else {
+            return Double(round(number * multiplier) / multiplier)
+        }
+        
     }
     
 }

@@ -17,24 +17,29 @@ indirect enum RebalanceProgress: Equatable {
     case done
     
     var stepNumber: Int {
-        get {
-            switch self {
-            case .failed:
-                return -1
-            case .ready:
-                return 0
-            case .gettingLatestValues:
-                return 1
-            case .executingSellOrders:
-                return 2
-            case .updatingUserPortfolio:
-                return 3
-            case .executingBuyOrders:
-                return 4
-            case .done:
-                return 5
-            }
+        switch self {
+        case .failed:
+            return -1
+        case .ready:
+            return 0
+        case .gettingLatestValues:
+            return 1
+        case .executingSellOrders:
+            return 2
+        case .updatingUserPortfolio:
+            return 3
+        case .executingBuyOrders:
+            return 4
+        case .done:
+            return 5
         }
+    }
+    
+    var isFailed: Bool {
+        if case .failed(_, _) = self {
+            return true
+        }
+        return false
     }
     
     static func == (lhs: RebalanceProgress, rhs: RebalanceProgress) -> Bool {

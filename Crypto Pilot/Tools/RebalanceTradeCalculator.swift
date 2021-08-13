@@ -52,12 +52,12 @@ class RebalanceTradeCalculator {
                     let desiredValue = (desiredRatio * balanceValue) / balanceRatio
                     let overflow = balanceValue - desiredValue
                     orders.append(
-                        RebalanceOrder(asset: coinBalance.asset, amount: overflow, side: .SELL)
+                        try RebalanceOrder(asset: coinBalance.asset, amount: overflow, side: .SELL)
                     )
                 }
             } else {
                 orders.append(
-                    RebalanceOrder(asset: coinBalance.asset, amount: coinBalance.free, side: .SELL)
+                    try RebalanceOrder(asset: coinBalance.asset, amount: coinBalance.free, side: .SELL)
                 )
             }
         }
@@ -85,7 +85,7 @@ class RebalanceTradeCalculator {
                 if let assetPriceInBTC = findPriceInBTC(asset: desiredAllocation.asset) {
                     let amountToBuy = delta / assetPriceInBTC
                     orders.append(
-                        RebalanceOrder(asset: desiredAllocation.asset, amount: amountToBuy, side: .BUY)
+                        try RebalanceOrder(asset: desiredAllocation.asset, amount: amountToBuy, side: .BUY)
                     )
                 } else {
                     print("--- !!! --- Could not find BTC price for \(desiredAllocation.asset) while calculating BUY order")

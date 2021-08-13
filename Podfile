@@ -8,4 +8,5 @@ target 'Crypto Pilot' do
   # Pods for Crypto Pilot
   pod 'Alamofire', '~> 5.2'
   pod 'Firebase/Analytics'
+  pod 'Mixpanel-swift'
 end

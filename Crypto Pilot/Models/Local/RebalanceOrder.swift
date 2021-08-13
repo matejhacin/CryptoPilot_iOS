@@ -17,12 +17,12 @@ class RebalanceOrder {
     var fixedAmount: Double?
     var minAmount: Double?
     
-    init(asset: String, amount: Double, side: BNOrderSide) {
+    init(asset: String, amount: Double, side: BNOrderSide) throws {
         self.asset = asset
         self.amount = amount
         self.side = side
         symbol = "\(asset)\(Constants.Coins.BASE_COIN)"
-        setSymbolRules()
+        try setSymbolRules()
     }
     
     var isExecutable: Bool {
@@ -32,10 +32,12 @@ class RebalanceOrder {
         }
     }
     
-    private func setSymbolRules() {
+    private func setSymbolRules() throws {
         if let symbol = ExchangeInfo.shared.info?.findSymbol(symbol: symbol), let stepSize = symbol.stepSize, let minQty = symbol.minQty  {
-            fixedAmount = NumberTools.roundDecimals(number: amount, precision: stepSize)
+            fixedAmount = NumberTools.roundDecimals(number: amount, precision: stepSize, roundDown: side == .SELL)
             minAmount = minQty
+        } else {
+            throw CPError("Unable to load exchange info. Please retry again later.")
         }
     }
     
