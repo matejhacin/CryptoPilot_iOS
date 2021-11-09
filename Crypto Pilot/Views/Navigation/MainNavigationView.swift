@@ -58,6 +58,7 @@ struct MainNavigationView: View {
                 .sheet(isPresented: $presentingRebalanceModal, content: {
                     RebalanceView(presentedAsModal: $presentingRebalanceModal)
                 })
+                .hidden()
             }
             .frame(height: 90)
             .background(Color.altGray())

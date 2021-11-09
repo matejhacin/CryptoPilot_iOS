@@ -43,7 +43,7 @@ struct ConnectBinanceOnboardingView: View {
                 }
                 
                 // Subtitle
-                Text("Once you have a Binance account, generate your API keys and input them below.")
+                Text("Input your Binance read-only API keys here.")
                     .foregroundColor(.white())
                     .font(.callout)
                 
@@ -57,7 +57,7 @@ struct ConnectBinanceOnboardingView: View {
                         .preferredColorScheme(.dark)
                         .foregroundColor(.white())
                         .accentColor(.white())
-                    Toggle("Give Crypto Pilot permission to rebalance", isOn: $permissionGiven)
+                    Toggle("Give Crypto Pilot permision to display your portfolio", isOn: $permissionGiven)
                         .font(.callout)
                 }
                 .frame(maxWidth: .infinity)

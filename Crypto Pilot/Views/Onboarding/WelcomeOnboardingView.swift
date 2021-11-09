@@ -40,11 +40,11 @@ struct WelcomeOnboardingView: View {
                         Spacer()
                     }
                     
-                    Text("Crypto Pilot is a quick and simple solution that enables users to index the crypto market and automatically rebalance their porfolio.")
+                    Text("Crypto Pilot is a quick and simple solution that enables users to check their portfolio status and progress. CP securely syncs with your exchange accounts via READ-ONLY api keys.")
                         .foregroundColor(Color.white())
                         .font(.callout)
                     
-                    Text("If you would like to learn more about how CP works check it out here.")
+                    Text("If you would like to learn more on how CP works, check it out here.")
                         .foregroundColor(Color.white())
                         .font(.callout)
                     

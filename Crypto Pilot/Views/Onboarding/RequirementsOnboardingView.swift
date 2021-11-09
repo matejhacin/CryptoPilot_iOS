@@ -39,9 +39,12 @@ struct RequirementsOnboardingView: View {
                     Spacer()
                 }
                 
-                Text("1.) Binance account\n\n2.) Minimum sum cash on your account\n\n3.) Crypto Pilot rebalances your complete portfolio. Please make sure that we can rebalance contents of your portfolio.\n\n4.) Binance API keys")
+                Text("1.) Binance account\n\n2.) Binance Read-only API keys\n\n\n\nNote that you have full control over your API keys. You can delete them on the exchange at any time.")
                     .foregroundColor(.white())
                     .font(.callout)
+                
+                Spacer()
+                    .frame(height: 16)
                 
                 Text("Dont have a Binance Account?")
                     .foregroundColor(.white())
@@ -54,7 +57,7 @@ struct RequirementsOnboardingView: View {
                 
                 HStack {
                     Spacer()
-                    NavigationLink("", destination: ExplanationOnboardingView(), isActive: $navigateToNextView).hidden()
+                    NavigationLink("", destination: ConnectBinanceOnboardingView(), isActive: $navigateToNextView).hidden()
                     Button("Ok! Continue") {
                         Tracking.buttonClick(.onboardingNext, on: .onboardingRequirements)
                         navigateToNextView = true
